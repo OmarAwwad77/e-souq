@@ -88,7 +88,7 @@ const Slider = () => {
 
 export default Slider;
 
-/* Todo (27/3)
+/* Todo (26/3)
 	1- working arrows 				(done)
 	2- slider text anim             (done)
 	3- pointer navlinks and logo 	(done)
@@ -96,4 +96,11 @@ export default Slider;
 	5- create gridLayout            (done)
 	6- footer 						(done)
 
+*/
+
+/* Todo (27/3)
+	1- Categories container			(done)
+	2- hover affects                (done)
+	3- shop with us container    	()
+	4- scroll effect            	()
 */

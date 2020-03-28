@@ -61,11 +61,11 @@ const fadeInImageAnim = keyframes`
 `;
 
 export const SliderWrapper = styled.div`
-	grid-area: content;
 	z-index: 1;
 	position: relative;
 	width: 100%;
-	min-height: 95vh;
+	height: 95vh;
+	min-height: 50rem;
 	overflow: hidden;
 `;
 

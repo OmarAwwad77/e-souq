@@ -1,8 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
 
 import Layout from './components/layout/layout';
-import Main from './pages/main';
+import Main from './pages/main/main.page';
 
 function App() {
 	return (

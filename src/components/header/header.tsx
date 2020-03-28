@@ -10,7 +10,7 @@ import {
 	NavLink,
 	CartIconContainer,
 	CartItemsNumber
-} from './headerStyles';
+} from './header.styles';
 
 const Header = () => {
 	const [isSticky, setSticky] = useState<boolean>(false);

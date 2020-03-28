@@ -60,6 +60,8 @@ export const HeaderWrapper = styled.header`
 	height: 6rem;
 	padding: 0 2rem;
 	${(p: StyledHeaderProps) => positionStyles(p.sticky)};
+	box-shadow: 0px 1px 13px
+		${(p: StyledHeaderProps) => (p.sticky ? 'lightgray' : 'transparent')};
 `;
 
 export const LogoContainer = styled.div`
