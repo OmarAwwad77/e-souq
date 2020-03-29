@@ -8,10 +8,15 @@ declare module 'styled-components' {
 			L: string;
 			M: string;
 			S: string;
+			XS: string;
 		};
 		fonts: {
 			zilla: string;
 		};
-		centerElements: FlattenSimpleInterpolation;
+		mixins: {
+			centerElements: FlattenSimpleInterpolation;
+			hoverable: FlattenSimpleInterpolation;
+			h1: FlattenInterpolation;
+		};
 	}
 }

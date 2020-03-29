@@ -3,7 +3,7 @@ import {
 	CategoriesWrapper,
 	Category,
 	CategoryContainer,
-	CategoryButton
+	Button
 } from './categories-container.styles';
 
 import mensImageUrl from '../../assets/mens.jpg';
@@ -16,19 +16,19 @@ const CategoriesContainer = () => {
 		<CategoriesWrapper>
 			<CategoryContainer>
 				<Category url={mensImageUrl} />
-				<CategoryButton>Mens</CategoryButton>
+				<Button>Mens</Button>
 			</CategoryContainer>
 			<CategoryContainer>
 				<Category url={wonmensImageUrl} />
-				<CategoryButton>womens</CategoryButton>
+				<Button>womens</Button>
 			</CategoryContainer>
 			<CategoryContainer>
 				<Category url={sneakersImageUrl} />
-				<CategoryButton>sneakers</CategoryButton>
+				<Button>sneakers</Button>
 			</CategoryContainer>
 			<CategoryContainer>
 				<Category url={hatsImageUrl} />
-				<CategoryButton>hats</CategoryButton>
+				<Button>hats</Button>
 			</CategoryContainer>
 		</CategoriesWrapper>
 	);

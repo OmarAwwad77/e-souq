@@ -58,7 +58,7 @@ export const HeaderWrapper = styled.header`
 	left: 0;
 	width: 100%;
 	height: 6rem;
-	padding: 0 2rem;
+	padding: 0 ${p => p.theme.spacer.XS};
 	${(p: StyledHeaderProps) => positionStyles(p.sticky)};
 	box-shadow: 0px 1px 13px
 		${(p: StyledHeaderProps) => (p.sticky ? 'lightgray' : 'transparent')};
@@ -93,26 +93,10 @@ export const NavLinks = styled.ul`
 `;
 
 export const NavLink = styled.li`
-	position: relative;
 	text-transform: uppercase;
 	font-size: 1.6rem;
 	font-style: italic;
-	cursor: pointer;
-	&::after {
-		content: '';
-		position: absolute;
-		top: 100%;
-		right: 0%;
-		background-color: black;
-		height: 1px;
-		width: 0%;
-		transition: width 0.3s ease-in-out;
-	}
-
-	&:hover:after {
-		left: 0%;
-		width: 100%;
-	}
+	${p => p.theme.mixins.hoverable};
 `;
 
 export const CartIconContainer = styled.li`

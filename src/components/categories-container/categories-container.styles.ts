@@ -17,9 +17,9 @@ const before_and_after_css = css`
 	transition: all 0.4s ease-out;
 `;
 
-export const CategoryButton = styled.button`
+export const Button = styled.button`
 	position: absolute;
-	${p => p.theme.centerElements}
+	${p => p.theme.mixins.centerElements}
 	color: #fff;
 	text-transform: uppercase;
 	font-size: 2rem;
@@ -34,7 +34,7 @@ export const CategoryButton = styled.button`
 	&:before {
 		content: '';
 		position: absolute;
-		${p => p.theme.centerElements}
+		${p => p.theme.mixins.centerElements}
 		width: 100%;
 		height: 100%;
 		background-color: transparent;
@@ -47,12 +47,12 @@ export const CategoryContainer = styled.div`
 	overflow: hidden;
 	position: relative;
 
-	&:hover ${CategoryButton} {
+	&:hover ${Button} {
 		background-color: #fff;
 		color: black;
 	}
 
-	&:hover ${CategoryButton}:before {
+	&:hover ${Button}:before {
 		top: 75%;
 		left: 57%;
 	}
