@@ -16,7 +16,7 @@ const CollectionTitle = styled.h1`
 	${p => p.theme.mixins.hoverable}
 `;
 
-const shop = () => {
+const ShopPage = () => {
 	return (
 		<ShopWrapper>
 			<CollectionTitle>sneakers</CollectionTitle>
@@ -34,4 +34,4 @@ const shop = () => {
 	);
 };
 
-export default shop;
+export default ShopPage;

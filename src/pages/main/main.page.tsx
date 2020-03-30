@@ -9,7 +9,7 @@ export const MainWrapper = styled.div`
 	grid-area: content;
 `;
 
-const main = () => {
+const MainPage = () => {
 	return (
 		<MainWrapper>
 			<Slider />
@@ -19,4 +19,4 @@ const main = () => {
 	);
 };
 
-export default main;
+export default MainPage;

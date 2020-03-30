@@ -43,7 +43,8 @@ const theme: DefaultTheme = {
 		XS: '2rem'
 	},
 	fonts: {
-		zilla: `'Zilla Slab', serif;`
+		zilla: `'Zilla Slab', serif;`,
+		Poppins: `'Poppins', sans-serif;`
 	},
 	mixins: {
 		hoverable,

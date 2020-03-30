@@ -12,6 +12,7 @@ declare module 'styled-components' {
 		};
 		fonts: {
 			zilla: string;
+			Poppins: string;
 		};
 		mixins: {
 			centerElements: FlattenSimpleInterpolation;
