@@ -1,54 +1,146 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { css } from 'styled-components';
 
+import { countries } from './countries';
 import { PageWrapper, PageContent } from '../cart/cart.page.styles';
-import {
-	CartTotalWrapper as Order,
-	Title,
-	Divider,
-	LineWrapper,
-	Button
-} from '../../components/cart/cart-total/cart-total.styles';
-import { Header, BillingForm } from './checkout.page.styles';
+import { Header } from './checkout.page.styles';
+import Form from '../../components/form/form';
+import { FormStateType } from '../../components/form/form.types';
+import Order from '../../components/order/order';
+
+const billingFormStyles = css`
+	gap: 1.3rem;
+	grid-template-rows: 5rem;
+	grid-template-areas:
+		'title title'
+		'divider divider'
+		'firstNameLabel lastNameLabel'
+		'firstName lastName'
+		'countryLabel countryLabel'
+		'country country'
+		'streetAddressLabel streetAddressLabel'
+		'streetAddress streetAddress'
+		'cityLabel cityLabel'
+		'city city'
+		'stateLabel stateLabel'
+		'state state'
+		'zipLabel zipLabel'
+		'zip zip'
+		'phoneLabel phoneLabel'
+		'phone phone'
+		'emailLabel emailLabel'
+		'email email';
+
+	font-family: ${p => p.theme.fonts.Poppins};
+	font-size: 1.4rem;
+`;
+
+const formInitialState: FormStateType = {
+	fields: [
+		{
+			type: 'text',
+			label: 'firstName',
+			displayLabel: 'first name',
+			value: '',
+			isValid: false,
+			errorMessage: null,
+			validation: {
+				required: true,
+				type: 'text'
+			}
+		},
+		{
+			type: 'text',
+			label: 'lastName',
+			displayLabel: 'last name',
+			value: '',
+			isValid: false,
+			errorMessage: null,
+			validation: {
+				required: true,
+				type: 'text'
+			}
+		},
+		{
+			type: 'select',
+			label: 'country',
+			options: countries,
+			value: countries[0],
+			validation: {
+				required: true
+			}
+		},
+		{
+			type: 'text',
+			label: 'streetAddress',
+			displayLabel: 'street address',
+			value: '',
+			validation: {
+				required: true
+			}
+		},
+		{
+			type: 'text',
+			label: 'city',
+			value: '',
+			validation: {
+				required: true
+			}
+		},
+		{
+			type: 'text',
+			label: 'state',
+			displayLabel: 'state / county',
+			value: '',
+			validation: {
+				required: true
+			}
+		},
+		{
+			type: 'text',
+			label: 'zip',
+			displayLabel: 'postcode / ZIP',
+			value: '',
+			validation: {
+				required: true
+			}
+		},
+		{
+			type: 'text',
+			label: 'phone',
+			value: '',
+			validation: {
+				required: true,
+				type: 'phoneNo',
+				minLen: 5
+			}
+		},
+		{
+			type: 'text',
+			label: 'email',
+			value: '',
+			validation: {
+				required: true,
+				type: 'email'
+			}
+		}
+	],
+	isFormValid: false
+};
 
 const CheckoutPage = () => {
+	const [formState, setFormState] = useState<FormStateType>(formInitialState);
+
 	return (
 		<PageWrapper>
 			<Header headerTitle='Checkout' />
 			<PageContent>
-				<BillingForm />
-				<Order>
-					<Title>Your Order</Title>
-					<Divider />
-					<LineWrapper light>
-						<span>product</span>
-						<span>subtotal</span>
-					</LineWrapper>
-					<Divider />
-					<LineWrapper light>
-						<span>
-							Belt long jumpsuitfgfg{' '}
-							<span style={{ fontWeight: 700 }}>× 1</span>
-						</span>
-						<span>$49.99</span>
-					</LineWrapper>
-					<Divider />
-					<LineWrapper light>
-						<span>subtotal</span>
-						<span>$129.98</span>
-					</LineWrapper>
-					<Divider />
-					<LineWrapper light>
-						<span>shipping</span>
-						<span>flat rate: $29.98</span>
-					</LineWrapper>
-					<Divider />
-					<LineWrapper light>
-						<span>total</span>
-						<span style={{ fontWeight: 700 }}>$229.98</span>
-					</LineWrapper>
-					<Divider />
-					<Button>Place Order</Button>
-				</Order>
+				<Form
+					state={formState}
+					setState={setFormState}
+					gridCss={billingFormStyles}
+				/>
+				<Order />
 			</PageContent>
 		</PageWrapper>
 	);

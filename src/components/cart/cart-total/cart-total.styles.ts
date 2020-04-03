@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { FlattenSimpleInterpolation } from 'styled-components';
 
 export const CartTotalWrapper = styled.div`
 	width: 30rem;
@@ -19,6 +19,7 @@ export const Title = styled.h2`
 	font-size: 2rem;
 	margin: 0;
 	margin-bottom: 1.7rem;
+	${(p: { gridArea?: FlattenSimpleInterpolation }) => p.gridArea};
 `;
 
 interface LineWrapperPropsType {
@@ -44,6 +45,7 @@ export const Divider = styled.div`
 	width: 100%;
 	background-color: #c7c7c7;
 	height: 0.1rem;
+	${(p: { gridArea?: FlattenSimpleInterpolation }) => p.gridArea};
 `;
 
 export const Button = styled.button`
@@ -56,9 +58,12 @@ export const Button = styled.button`
 	font-size: inherit;
 	margin-top: 2.5rem;
 	cursor: pointer;
+	backface-visibility: hidden;
+	box-shadow: 3px 5px 8px 0px #a9a9a9;
 	transition: all 0.3s ease;
 
 	&:hover {
-		box-shadow: 3px 5px 8px 0px #a9a9a9;
+		box-shadow: unset;
+		transform: scale(1.03);
 	}
 `;

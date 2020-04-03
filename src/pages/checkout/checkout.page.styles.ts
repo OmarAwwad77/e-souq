@@ -1,4 +1,8 @@
-import styled from 'styled-components';
+import styled, {
+	FlattenInterpolation,
+	ThemeProps,
+	DefaultTheme
+} from 'styled-components';
 
 export const Header = styled.header`
 	position: relative;
@@ -17,12 +21,13 @@ export const Header = styled.header`
 	}
 `;
 
-export const BillingForm = styled.div`
+export const FormWrapper = styled.form`
 	width: 60%;
-	height: 50rem;
+	/* height: 50rem; */
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	grid-template-rows: auto;
 	grid-auto-rows: auto;
-	background-color: #eee;
+	/* background-color: #eeeeee6b; */
+	${(p: { css: FlattenInterpolation<ThemeProps<DefaultTheme>> }) => p.css}
 `;
