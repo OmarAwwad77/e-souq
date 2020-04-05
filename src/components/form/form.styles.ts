@@ -1,10 +1,24 @@
 import styled, { css } from 'styled-components';
 import SelectRaw from 'react-select';
 import { GridCss } from './form.types';
-export {
+import {
 	Title,
-	Divider
+	Divider as RawDivider
 } from '../../components/cart/cart-total/cart-total.styles';
+
+export { Title };
+export const Divider = styled(RawDivider)`
+	margin-bottom: 2rem;
+`;
+
+export const SubTitle = styled(Title)`
+	font-size: 1.4rem;
+	color: #3e3e3e;
+`;
+
+export const subTitleGridArea = css`
+	grid-area: subTitle;
+`;
 
 export const titleGridArea = css`
 	grid-area: title;
@@ -20,6 +34,8 @@ export const FormWrapper = styled.form`
 	grid-template-columns: repeat(2, 1fr);
 	grid-template-rows: auto;
 	grid-auto-rows: auto;
+	font-family: ${p => p.theme.fonts.Poppins};
+	font-size: 1.4rem;
 	${(p: { css: GridCss }) => p.css}
 `;
 
@@ -46,7 +62,7 @@ export const Input = styled.input`
 	position: relative;
 	outline: none;
 	padding: 1rem;
-	border: 1px solid #eee;
+	border: 1px solid #cac1c187;
 	font-size: inherit;
 	font-family: inherit;
 	transition: all 0.2s ease-out;
@@ -69,9 +85,10 @@ export const Select = styled(SelectRaw)`
 
 	.react-select__control {
 		border-radius: 0;
-		border-color: #eee;
+		border-color: #cac1c187;
 		height: 5rem;
 		box-shadow: none;
+		margin-bottom: 1rem;
 
 		&--is-focused,
 		&:hover {

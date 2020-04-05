@@ -4,20 +4,20 @@ import {
 	CollectionItemWrapper,
 	ItemImage,
 	ItemInfoWrapper,
-	AddToCartButton
+	AddToCartButton,
 } from './collection-item.styles';
 
-export interface ItemType {
-	url: string;
+export interface CollectionItemType {
 	name: string;
 	price: number;
+	url: string;
 }
 
 interface CollectionItemPropsType {
-	item: ItemType;
+	item: CollectionItemType;
 }
 
-const CollectionItem: React.FC<CollectionItemPropsType> = props => {
+const CollectionItem: React.FC<CollectionItemPropsType> = (props) => {
 	return (
 		<CollectionItemWrapper>
 			<ItemImage url={props.item.url} />

@@ -3,8 +3,9 @@ import {
 	CategoriesWrapper,
 	Category,
 	CategoryContainer,
-	Button
+	Button,
 } from './categories-container.styles';
+import { Link } from '../header/header.styles';
 
 import mensImageUrl from '../../assets/mens.jpg';
 import wonmensImageUrl from '../../assets/womens.jpg';
@@ -16,19 +17,27 @@ const CategoriesContainer = () => {
 		<CategoriesWrapper>
 			<CategoryContainer>
 				<Category url={mensImageUrl} />
-				<Button>Mens</Button>
+				<Link to='/shop/mens'>
+					<Button>Mens</Button>
+				</Link>
 			</CategoryContainer>
 			<CategoryContainer>
 				<Category url={wonmensImageUrl} />
-				<Button>womens</Button>
+				<Link to='/shop/womens'>
+					<Button>womens</Button>
+				</Link>
 			</CategoryContainer>
 			<CategoryContainer>
 				<Category url={sneakersImageUrl} />
-				<Button>sneakers</Button>
+				<Link to='/shop/sneakers'>
+					<Button>sneakers</Button>
+				</Link>
 			</CategoryContainer>
 			<CategoryContainer>
 				<Category url={hatsImageUrl} />
-				<Button>hats</Button>
+				<Link to='/shop/hats'>
+					<Button>hats</Button>
+				</Link>
 			</CategoryContainer>
 		</CategoriesWrapper>
 	);

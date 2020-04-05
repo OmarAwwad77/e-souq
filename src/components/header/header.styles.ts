@@ -1,8 +1,9 @@
 import styled, {
 	css,
 	keyframes,
-	FlattenSimpleInterpolation
+	FlattenSimpleInterpolation,
 } from 'styled-components';
+import { NavLink as RawNavLink, Link as RawLink } from 'react-router-dom';
 
 import { ReactComponent as LogoIcon } from '../../assets/logo.svg';
 
@@ -58,7 +59,7 @@ export const HeaderWrapper = styled.header`
 	left: 0;
 	width: 100%;
 	height: 6rem;
-	padding: 0 ${p => p.theme.spacer.XS};
+	padding: 0 ${(p) => p.theme.spacer.XS};
 	${(p: StyledHeaderProps) => positionStyles(p.sticky)};
 	box-shadow: 0px 1px 13px
 		${(p: StyledHeaderProps) => (p.sticky ? 'lightgray' : 'transparent')};
@@ -80,23 +81,39 @@ export const Logo = styled(LogoIcon)`
 	margin-right: 0.5rem;
 `;
 
-export const Nav = styled.nav`
-	width: 33.4rem;
-`;
-
 export const NavLinks = styled.ul`
+	width: 30.4rem;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	list-style: none;
 	margin: 0;
+	padding: 0;
+
+	.active:after {
+		left: 0%;
+		width: 100%;
+	}
 `;
 
-export const NavLink = styled.li`
+export const NavLinkContainer = styled.li`
 	text-transform: uppercase;
 	font-size: 1.6rem;
 	font-style: italic;
-	${p => p.theme.mixins.hoverable};
+`;
+
+const linkStyles = css`
+	text-decoration: none;
+	color: inherit;
+`;
+
+export const NavLink = styled(RawNavLink)`
+	${linkStyles}
+	${(p) => p.theme.mixins.hoverable};
+`;
+
+export const Link = styled(RawLink)`
+	${linkStyles}
 `;
 
 export const CartIconContainer = styled.li`

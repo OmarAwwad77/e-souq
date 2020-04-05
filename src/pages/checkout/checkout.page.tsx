@@ -9,8 +9,8 @@ import { FormStateType } from '../../components/form/form.types';
 import Order from '../../components/order/order';
 
 const billingFormStyles = css`
-	gap: 1.3rem;
-	grid-template-rows: 5rem;
+	gap: 1rem;
+	/* grid-template-rows: 5rem; */
 	grid-template-areas:
 		'title title'
 		'divider divider'
@@ -30,36 +30,34 @@ const billingFormStyles = css`
 		'phone phone'
 		'emailLabel emailLabel'
 		'email email';
-
-	font-family: ${p => p.theme.fonts.Poppins};
-	font-size: 1.4rem;
 `;
 
 const formInitialState: FormStateType = {
+	titles: {
+		title: 'Billing details',
+	},
 	fields: [
 		{
 			type: 'text',
 			label: 'firstName',
 			displayLabel: 'first name',
 			value: '',
-			isValid: false,
-			errorMessage: null,
+
 			validation: {
 				required: true,
-				type: 'text'
-			}
+				type: 'text',
+			},
 		},
 		{
 			type: 'text',
 			label: 'lastName',
 			displayLabel: 'last name',
 			value: '',
-			isValid: false,
-			errorMessage: null,
+
 			validation: {
 				required: true,
-				type: 'text'
-			}
+				type: 'text',
+			},
 		},
 		{
 			type: 'select',
@@ -67,8 +65,8 @@ const formInitialState: FormStateType = {
 			options: countries,
 			value: countries[0],
 			validation: {
-				required: true
-			}
+				required: true,
+			},
 		},
 		{
 			type: 'text',
@@ -76,16 +74,16 @@ const formInitialState: FormStateType = {
 			displayLabel: 'street address',
 			value: '',
 			validation: {
-				required: true
-			}
+				required: true,
+			},
 		},
 		{
 			type: 'text',
 			label: 'city',
 			value: '',
 			validation: {
-				required: true
-			}
+				required: true,
+			},
 		},
 		{
 			type: 'text',
@@ -93,8 +91,8 @@ const formInitialState: FormStateType = {
 			displayLabel: 'state / county',
 			value: '',
 			validation: {
-				required: true
-			}
+				required: true,
+			},
 		},
 		{
 			type: 'text',
@@ -102,8 +100,8 @@ const formInitialState: FormStateType = {
 			displayLabel: 'postcode / ZIP',
 			value: '',
 			validation: {
-				required: true
-			}
+				required: true,
+			},
 		},
 		{
 			type: 'text',
@@ -112,20 +110,19 @@ const formInitialState: FormStateType = {
 			validation: {
 				required: true,
 				type: 'phoneNo',
-				minLen: 5
-			}
+				minLen: 5,
+			},
 		},
 		{
 			type: 'text',
 			label: 'email',
 			value: '',
 			validation: {
-				required: true,
-				type: 'email'
-			}
-		}
+				type: 'email',
+			},
+		},
 	],
-	isFormValid: false
+	isFormValid: false,
 };
 
 const CheckoutPage = () => {

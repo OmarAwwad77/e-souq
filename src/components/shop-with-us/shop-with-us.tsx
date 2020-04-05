@@ -4,8 +4,9 @@ import {
 	ShopWithUsWrapper,
 	SmallTitle,
 	BigTitle,
-	ShopButton
+	ShopButton,
 } from './shop-with-us.styles';
+import { Link } from '../header/header.styles';
 
 const ShopWithUs = () => {
 	const wrapperRef = useRef<HTMLElement>(null);
@@ -36,7 +37,9 @@ const ShopWithUs = () => {
 		<ShopWithUsWrapper y={positionY} ref={wrapperRef}>
 			<SmallTitle>new Arrival</SmallTitle>
 			<BigTitle>new boho style</BigTitle>
-			<ShopButton>Shop now</ShopButton>
+			<Link to='/shop'>
+				<ShopButton>Shop now</ShopButton>
+			</Link>
 		</ShopWithUsWrapper>
 	);
 };

@@ -7,6 +7,8 @@ import {
 
 export type GridCss = FlattenInterpolation<ThemeProps<DefaultTheme>>;
 
+export type InputTypes = 'text' | 'select' | 'password';
+
 export type ValidationType = {
 	required?: boolean;
 	maxLen?: number;
@@ -15,8 +17,8 @@ export type ValidationType = {
 	type?: 'email' | 'phoneNo' | 'text' | 'number';
 };
 
-export type FieldsType = {
-	type: 'text' | 'select';
+export type FieldType = {
+	type: InputTypes;
 	label: string;
 	displayLabel?: string;
 	value: string | { value: string; label: string };
@@ -27,7 +29,8 @@ export type FieldsType = {
 };
 
 export interface FormStateType {
-	fields: FieldsType[];
+	titles: { title: string; subTitle?: string };
+	fields: FieldType[];
 	isFormValid: boolean;
 }
 

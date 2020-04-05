@@ -12,7 +12,7 @@ const GlobalStyles = createGlobalStyle`
 
 	body{
 		margin: 0;
-		font-family: 'Roboto', sans-serif;
+		font-family: 'Poppins', sans-serif;
 		font-size: 1.6rem;
 	}
 `;

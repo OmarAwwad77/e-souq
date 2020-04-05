@@ -10,18 +10,22 @@ export const CartTotalWrapper = styled.div`
 	justify-content: space-evenly;
 	align-items: center;
 	flex-direction: column;
-	font-family: ${p => p.theme.fonts.Poppins};
+	font-family: ${(p) => p.theme.fonts.Poppins};
 `;
 
-export const Title = styled.h2`
+type TitleProps = {
+	gridArea?: FlattenSimpleInterpolation;
+	// noMarginBottom?: boolean;
+};
+
+export const Title = styled.h2<TitleProps>`
 	align-self: start;
-	font-family: ${p => p.theme.fonts.zilla};
+	font-family: ${(p) => p.theme.fonts.zilla};
 	font-size: 2rem;
 	margin: 0;
-	margin-bottom: 1.7rem;
-	${(p: { gridArea?: FlattenSimpleInterpolation }) => p.gridArea};
+	${(p) => p.gridArea};
 `;
-
+/* margin-bottom: ${p => (p.noMarginBottom ? '0' : '1.7rem')}; */
 interface LineWrapperPropsType {
 	light?: boolean;
 }
@@ -61,6 +65,7 @@ export const Button = styled.button`
 	backface-visibility: hidden;
 	box-shadow: 3px 5px 8px 0px #a9a9a9;
 	transition: all 0.3s ease;
+	text-transform: uppercase;
 
 	&:hover {
 		box-shadow: unset;

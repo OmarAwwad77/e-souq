@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import cartImageUrl from '../../assets/cart-img-1.jpg';
 
 export const PageWrapper = styled.section`
-	margin: ${p => `${p.theme.spacer.M} 0`};
+	margin: ${(p) => `${p.theme.spacer.M} 0`};
 `;
 
 export const PageTitle = styled.h1`
-	${p => p.theme.mixins.h1};
+	${(p) => p.theme.mixins.h1};
 	font-size: 4rem;
 	position: absolute;
 	top: 40%;
@@ -27,5 +27,5 @@ export const PageContent = styled.div`
 	flex-wrap: wrap;
 	align-items: center;
 	justify-content: space-evenly;
-	margin: ${p => p.theme.spacer.M} ${p => p.theme.spacer.XS} 0;
+	margin: ${(p) => p.theme.spacer.M} ${(p) => p.theme.spacer.XS} 0;
 `;

@@ -5,11 +5,12 @@ import {
 	HeaderWrapper,
 	LogoContainer,
 	Logo,
-	Nav,
 	NavLinks,
-	NavLink,
+	NavLinkContainer,
 	CartIconContainer,
-	CartItemsNumber
+	CartItemsNumber,
+	NavLink,
+	Link,
 } from './header.styles';
 
 const Header = () => {
@@ -33,22 +34,33 @@ const Header = () => {
 
 	return (
 		<HeaderWrapper sticky={isSticky}>
-			<LogoContainer>
-				<Logo />
-				<span>E-SOUQ</span>
-			</LogoContainer>
+			<Link to='/'>
+				<LogoContainer>
+					<Logo />
+					<span>E-SOUQ</span>
+				</LogoContainer>
+			</Link>
 
-			<Nav>
-				<NavLinks>
-					<NavLink>Shop</NavLink>
-					<NavLink>Checkout</NavLink>
-					<NavLink>Sign up</NavLink>
+			<NavLinks>
+				<NavLinkContainer>
+					<NavLink to='/shop'>Shop</NavLink>
+				</NavLinkContainer>
+
+				<NavLinkContainer>
+					<NavLink to='/checkout'>Checkout</NavLink>
+				</NavLinkContainer>
+
+				<NavLinkContainer>
+					<NavLink to='/sign'>Sign In</NavLink>
+				</NavLinkContainer>
+
+				<Link to='/cart'>
 					<CartIconContainer>
 						<CardIcon />
 						<CartItemsNumber>0</CartItemsNumber>
 					</CartIconContainer>
-				</NavLinks>
-			</Nav>
+				</Link>
+			</NavLinks>
 		</HeaderWrapper>
 	);
 };

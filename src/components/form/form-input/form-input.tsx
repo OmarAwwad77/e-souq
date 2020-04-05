@@ -8,6 +8,7 @@ const FormInput: React.FC<{
 	value: string;
 	onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 	errorMessage: string | null;
+	type: string;
 }> = props => {
 	const { errorMessage, gridArea, ...theRest } = props;
 	return (

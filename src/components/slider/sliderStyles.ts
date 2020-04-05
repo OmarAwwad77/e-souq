@@ -22,7 +22,7 @@ export const imagesText = [
 	`GENTLE 
   PALETTE`,
 	`VINTAGE
-  STYLE`
+  STYLE`,
 ];
 
 const scaleImageInAnim = keyframes`
@@ -139,7 +139,7 @@ export const Image = styled.div`
 
 export const SliderText = styled.div`
 	font-size: 7.5rem;
-	font-family: 'Roboto';
+	font-family: initial;
 	font-weight: 500;
 	letter-spacing: 5px;
 	white-space: pre;
