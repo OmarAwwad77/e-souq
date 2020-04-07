@@ -10,7 +10,7 @@ export const CartWrapper = styled.div`
 	justify-items: center;
 	align-items: center;
 	gap: 4rem;
-	font-family: ${p => p.theme.fonts.Poppins};
+	font-family: ${(p) => p.theme.fonts.Poppins};
 	font-size: 1.4rem;
 	color: #3e3e3e;
 `;
@@ -18,4 +18,7 @@ export const CartWrapper = styled.div`
 export const CartTitle = styled.span`
 	text-transform: uppercase;
 	font-size: 1.1rem;
+	width: 100%;
+	text-align: center;
+	border-bottom: 1px solid #b5b3b3a6;
 `;

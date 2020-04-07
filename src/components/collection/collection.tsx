@@ -1,10 +1,8 @@
 import React from 'react';
 
 import { CollectionWrapper } from './collection.styles';
-
-import CollectionItem, {
-	CollectionItemType,
-} from '../collection-item/collection-item';
+import CollectionItemType from '../../redux/cart/types/CollectionItem';
+import CollectionItem from '../collection-item/collection-item';
 
 const Collection: React.FC<{ items: CollectionItemType[] }> = (props) => {
 	return (

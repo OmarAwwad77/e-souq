@@ -7,7 +7,7 @@ import {
 	PageContent,
 	PageImage,
 	PageTitle,
-	PageWrapper
+	PageWrapper,
 } from './cart.page.styles';
 
 const CartPage: React.FC = () => {
@@ -18,7 +18,7 @@ const CartPage: React.FC = () => {
 			</PageImage>
 			<PageContent>
 				<Cart />
-				<CartTotal total={50} />
+				<CartTotal />
 			</PageContent>
 		</PageWrapper>
 	);

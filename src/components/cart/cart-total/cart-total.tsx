@@ -1,23 +1,30 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
+import { selectCartTotal } from '../../../redux/cart/cart.selectors';
+import { AppState } from '../../../redux/root.reducer';
 import {
 	CartTotalWrapper,
 	LineWrapper,
 	Title,
 	Button,
-	Divider
+	Divider,
 } from './cart-total.styles';
 
-interface CartTotalPropsType {
+interface OwnProps {}
+interface StoreProps {
 	total: number;
 }
 
-const CartTotal: React.FC<CartTotalPropsType> = props => {
+type Props = OwnProps & StoreProps;
+
+const CartTotal: React.FC<Props> = ({ total }) => {
 	return (
 		<CartTotalWrapper>
 			<Title>Cart totals</Title>
 			<LineWrapper>
-				<span>subtotal</span> <span>$126.98</span>
+				<span>subtotal</span> <span>${total}</span>
 			</LineWrapper>
 			<LineWrapper>
 				<span>Shipping</span>
@@ -27,11 +34,19 @@ const CartTotal: React.FC<CartTotalPropsType> = props => {
 			</LineWrapper>
 			<Divider />
 			<LineWrapper>
-				<span>total</span> <span>$146.98</span>
+				<span>total</span> <span>${total + 20}</span>
 			</LineWrapper>
 			<Button>Proceed to checkout</Button>
 		</CartTotalWrapper>
 	);
 };
 
-export default CartTotal;
+const mapStateToProps = createStructuredSelector<
+	AppState,
+	OwnProps,
+	StoreProps
+>({
+	total: selectCartTotal,
+});
+
+export default connect(mapStateToProps)(CartTotal);

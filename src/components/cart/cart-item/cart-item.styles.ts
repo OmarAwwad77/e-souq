@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const CartItemProduct = styled.div`
 	display: flex;
@@ -10,7 +10,7 @@ export const Remove = styled.span`
 	display: inline-block;
 	width: 2rem;
 	height: 2rem;
-	margin-right: ${p => p.theme.spacer.XS};
+	margin-right: ${(p) => p.theme.spacer.XS};
 	&::after,
 	&::before {
 		content: '';
@@ -35,27 +35,38 @@ export const Remove = styled.span`
 export const Image = styled.img`
 	width: 7rem;
 	height: auto;
-	margin-right: ${p => p.theme.spacer.XS};
+	margin-right: ${(p) => p.theme.spacer.XS};
 `;
 
 export const Name = styled.span`
 	width: 20rem;
 `;
 
+const plusMinusStyles = css`
+	position: absolute;
+	font-size: 2rem;
+	top: 50%;
+	transform: translate(0, -50%);
+	cursor: pointer;
+`;
+
+export const Plus = styled.span`
+	${plusMinusStyles}
+	left: 0;
+	margin-right: 1rem;
+`;
+
+export const Minus = styled.span`
+	${plusMinusStyles}
+	right: 0;
+	margin-left: 1rem;
+`;
+
 export const Quantity = styled.span`
 	display: inline-block;
 	position: relative;
-	&:before {
-		content: '\\2212';
-		cursor: pointer;
-		margin-right: 1rem;
-	}
-
-	&:after {
-		content: '\\002B';
-		cursor: pointer;
-		margin-left: 1rem;
-	}
+	width: 100%;
+	text-align: center;
 `;
 
 export const Price = styled.span`

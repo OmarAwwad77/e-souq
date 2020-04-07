@@ -1,14 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
 
-import { ReactComponent as CardIcon } from '../../assets/cart.svg';
+import CartIcon from '../cart-icon/cart-icon';
 import {
 	HeaderWrapper,
 	LogoContainer,
 	Logo,
 	NavLinks,
 	NavLinkContainer,
-	CartIconContainer,
-	CartItemsNumber,
 	NavLink,
 	Link,
 } from './header.styles';
@@ -55,10 +53,7 @@ const Header = () => {
 				</NavLinkContainer>
 
 				<Link to='/cart'>
-					<CartIconContainer>
-						<CardIcon />
-						<CartItemsNumber>0</CartItemsNumber>
-					</CartIconContainer>
+					<CartIcon />
 				</Link>
 			</NavLinks>
 		</HeaderWrapper>

@@ -115,18 +115,3 @@ export const NavLink = styled(RawNavLink)`
 export const Link = styled(RawLink)`
 	${linkStyles}
 `;
-
-export const CartIconContainer = styled.li`
-	position: relative;
-	width: 2.5rem;
-	height: 2.5rem;
-	cursor: pointer;
-`;
-
-export const CartItemsNumber = styled.span`
-	position: absolute;
-	top: 60%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	font-size: 1.2rem;
-`;

@@ -22,7 +22,7 @@ import floralShirt from '../../assets/shop/floral-shirt.png';
 import longSleeveUrl from '../../assets/shop/long-sleeve.png';
 import pinkShirt from '../../assets/shop/pink-shirt.png';
 
-import { CollectionItemType } from '../../components/collection-item/collection-item';
+import CollectionItemType from '../../components/../redux/cart/types/CollectionItem';
 
 interface DataType {
 	[key: string]: CollectionItemType[];
@@ -31,41 +31,49 @@ interface DataType {
 export const shopData: DataType = {
 	sneakers: [
 		{
+			id: 0,
 			name: 'Adidas NMD',
 			price: 250,
 			url: adidasNmdUrl,
 		},
 		{
+			id: 1,
 			name: 'Adidas Yeezy',
 			price: 210,
 			url: adidasYeezyUrl,
 		},
 		{
+			id: 2,
 			name: 'Black Converse',
 			price: 290,
 			url: blackConverseUrl,
 		},
 		{
+			id: 3,
 			name: 'Nike White AirForce',
 			price: 300,
 			url: whiteNikeUrl,
 		},
 		{
+			id: 4,
 			name: 'Nike Red High Tops',
 			price: 310,
 			url: nikeRed,
 		},
 		{
+			id: 5,
 			name: 'Nike Brown High Tops',
 			price: 310,
 			url: nikeBrown,
 		},
 		{
+			id: 6,
 			name: 'Air Jordan Limited',
 			price: 270,
 			url: nikeFunky,
 		},
 		{
+			id: 7,
 			name: 'Timberlands',
 			price: 260,
 			url: timberlands,
@@ -74,21 +82,25 @@ export const shopData: DataType = {
 
 	hats: [
 		{
+			id: 8,
 			name: 'Brown Brim',
 			price: 30,
 			url: brownBrimUrl,
 		},
 		{
+			id: 9,
 			name: 'Blue Beanie',
 			price: 27,
 			url: blueBeanieUrl,
 		},
 		{
+			id: 10,
 			name: 'Brown Cowboy',
 			price: 38,
 			url: brownCowboy,
 		},
 		{
+			id: 11,
 			name: 'Grey Brim',
 			price: 25,
 			url: greyBrim,
@@ -97,21 +109,25 @@ export const shopData: DataType = {
 
 	womens: [
 		{
+			id: 12,
 			name: 'Blue Tanktop',
 			price: 145,
 			url: blueTankTopUrl,
 		},
 		{
+			id: 13,
 			name: 'Floral Blouse',
 			price: 159,
 			url: floralBlouseUrl,
 		},
 		{
+			id: 14,
 			name: 'Floral Dress',
 			price: 180,
 			url: floralSkirtUrl,
 		},
 		{
+			id: 15,
 			name: 'Red Dots Dress',
 			price: 193,
 			url: redDressUrl,
@@ -120,136 +136,28 @@ export const shopData: DataType = {
 
 	mens: [
 		{
+			id: 16,
 			name: 'Camo Down Vest',
 			price: 143,
 			url: camoVestUrl,
 		},
 		{
+			id: 17,
 			name: 'Floral T-shirt',
 			price: 93,
 			url: floralShirt,
 		},
 		{
+			id: 18,
 			name: 'Black & White Longsleeve',
 			price: 55,
 			url: longSleeveUrl,
 		},
 		{
+			id: 19,
 			name: 'Pink T-shirt',
 			price: 64,
 			url: pinkShirt,
 		},
 	],
 };
-
-const sneakers: CollectionItemType[] = [
-	{
-		name: 'Adidas NMD',
-		price: 250,
-		url: adidasNmdUrl,
-	},
-	{
-		name: 'Adidas Yeezy',
-		price: 210,
-		url: adidasYeezyUrl,
-	},
-	{
-		name: 'Black Converse',
-		price: 290,
-		url: blackConverseUrl,
-	},
-	{
-		name: 'Nike White AirForce',
-		price: 300,
-		url: whiteNikeUrl,
-	},
-	{
-		name: 'Nike Red High Tops',
-		price: 310,
-		url: nikeRed,
-	},
-	{
-		name: 'Nike Brown High Tops',
-		price: 310,
-		url: nikeBrown,
-	},
-	{
-		name: 'Air Jordan Limited',
-		price: 270,
-		url: nikeFunky,
-	},
-	{
-		name: 'Timberlands',
-		price: 260,
-		url: timberlands,
-	},
-];
-
-const hats: CollectionItemType[] = [
-	{
-		name: 'Brown Brim',
-		price: 30,
-		url: brownBrimUrl,
-	},
-	{
-		name: 'Blue Beanie',
-		price: 27,
-		url: blueBeanieUrl,
-	},
-	{
-		name: 'Brown Cowboy',
-		price: 38,
-		url: brownCowboy,
-	},
-	{
-		name: 'Grey Brim',
-		price: 25,
-		url: greyBrim,
-	},
-];
-
-const womens: CollectionItemType[] = [
-	{
-		name: 'Blue Tanktop',
-		price: 145,
-		url: blueTankTopUrl,
-	},
-	{
-		name: 'Floral Blouse',
-		price: 159,
-		url: floralBlouseUrl,
-	},
-	{
-		name: 'Floral Dress',
-		price: 180,
-		url: floralSkirtUrl,
-	},
-	{
-		name: 'Red Dots Dress',
-		price: 193,
-		url: redDressUrl,
-	},
-];
-
-const mens: CollectionItemType[] = [
-	{
-		name: 'Camo Down Vest',
-		price: 143,
-		url: camoVestUrl,
-	},
-	{
-		name: 'Floral T-shirt',
-		price: 93,
-		url: floralShirt,
-	},
-	{
-		name: 'Black & White Longsleeve',
-		price: 55,
-		url: longSleeveUrl,
-	},
-	{
-		name: 'Pink T-shirt',
-		price: 64,
-		url: pinkShirt,
-	},
-];

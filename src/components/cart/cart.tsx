@@ -1,38 +1,43 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
+import { selectCartItems } from '../../redux/cart/cart.selectors';
+import { AppState } from '../../redux/root.reducer';
+import CartItemType from '../../redux/cart/types/CartItem';
 import { CartWrapper, CartTitle } from './cart.styles';
+import CartItem from './cart-item/cart-item';
 
-import CartItem from '../cart-item/cart-item';
+interface StoreProps {
+	cartItems: CartItemType[];
+}
 
-const skirtUrl =
-	'https://mgana.la-studioweb.com/wp-content/uploads/2019/10/fashion-pro-15-1000x1200.jpg';
+type Props = StoreProps;
 
-const vestUrl =
-	'https://mgana.la-studioweb.com/wp-content/uploads/2019/10/fashion-pro-10-1000x1200.jpg';
-
-const Cart = () => {
+const Cart: React.FC<Props> = ({ cartItems }) => {
 	return (
 		<CartWrapper>
 			<CartTitle>product</CartTitle>
 			<CartTitle>price</CartTitle>
 			<CartTitle>quantity</CartTitle>
 			<CartTitle>subTotal</CartTitle>
-			<CartItem
-				url={skirtUrl}
-				name='Tailored lapels wool coat'
-				price={49.99}
-				quantity={1}
-				total={49.99}
-			/>
-			<CartItem
-				url={vestUrl}
-				name='Belt long jumpsuit'
-				price={70}
-				quantity={2}
-				total={140}
-			/>
+			{cartItems.map((item: CartItemType) => (
+				<CartItem
+					key={item.id}
+					id={item.id}
+					name={item.name}
+					url={item.url}
+					price={item.price}
+					quantity={item.quantity}
+					total={item.total}
+				/>
+			))}
 		</CartWrapper>
 	);
 };
 
-export default Cart;
+const mapStateToProps = createStructuredSelector<AppState, {}, StoreProps>({
+	cartItems: selectCartItems,
+});
+
+export default connect(mapStateToProps)(Cart);

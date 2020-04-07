@@ -1,20 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 
 import App from './App';
 import { ThemeProvider } from 'styled-components';
 import theme from './styled-components/theme';
 import GlobalStyles from './styled-components/GlobalStyles';
+import { store } from './redux/store';
 
 ReactDOM.render(
 	<React.StrictMode>
-		<GlobalStyles />
-		<ThemeProvider theme={theme}>
-			<BrowserRouter>
-				<App />
-			</BrowserRouter>
-		</ThemeProvider>
+		<Provider store={store}>
+			<GlobalStyles />
+			<ThemeProvider theme={theme}>
+				<BrowserRouter>
+					<App />
+				</BrowserRouter>
+			</ThemeProvider>
+		</Provider>
 	</React.StrictMode>,
 	document.getElementById('root')
 );

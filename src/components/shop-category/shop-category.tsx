@@ -1,20 +1,18 @@
 import React from 'react';
 
 import Collection from '../collection/collection';
-import { CollectionItemType } from '../collection-item/collection-item';
+import CollectionItemType from '../../redux/cart/types/CollectionItem';
 import { CollectionTitle, Link } from './shop-category.styles';
 
-interface ShopCategoryPropsType {
+interface OwnProps {
 	title: string;
 	items: CollectionItemType[];
 	path?: string;
 }
 
-const ShopCategory: React.FC<ShopCategoryPropsType> = ({
-	items,
-	title,
-	path,
-}) => {
+type Props = OwnProps;
+
+const ShopCategory: React.FC<Props> = ({ items, title, path }) => {
 	const TitleLink = path && <Link to={`${path}/${title}`}>{title}</Link>;
 	return (
 		<>

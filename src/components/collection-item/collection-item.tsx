@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import {
 	CollectionItemWrapper,
@@ -7,27 +8,36 @@ import {
 	AddToCartButton,
 } from './collection-item.styles';
 
-export interface CollectionItemType {
-	name: string;
-	price: number;
-	url: string;
-}
+import CollectionItemType from '../../redux/cart/types/CollectionItem';
+import { addCartItem, StoreActions } from '../../redux/store.actions';
+import { Dispatch } from 'redux';
 
-interface CollectionItemPropsType {
+type OwnProps = {
 	item: CollectionItemType;
-}
+};
 
-const CollectionItem: React.FC<CollectionItemPropsType> = (props) => {
+type StoreProps = {
+	addCartItem: typeof addCartItem;
+};
+type Props = OwnProps & StoreProps;
+
+const CollectionItem: React.FC<Props> = ({ item, addCartItem }) => {
 	return (
 		<CollectionItemWrapper>
-			<ItemImage url={props.item.url} />
-			<AddToCartButton>add to cart</AddToCartButton>
+			<ItemImage url={item.url} />
+			<AddToCartButton onClick={() => addCartItem(item)}>
+				add to cart
+			</AddToCartButton>
 			<ItemInfoWrapper>
-				<span>{props.item.name}</span>
-				<span>{props.item.price}$</span>
+				<span>{item.name}</span>
+				<span>{item.price}$</span>
 			</ItemInfoWrapper>
 		</CollectionItemWrapper>
 	);
 };
 
-export default CollectionItem;
+const mapDispatchToProps = (dispatch: Dispatch<StoreActions>) => ({
+	addCartItem: (item: CollectionItemType) => dispatch(addCartItem(item)),
+});
+
+export default connect(null, mapDispatchToProps)(CollectionItem);
