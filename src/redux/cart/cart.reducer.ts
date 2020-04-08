@@ -1,7 +1,7 @@
 import CartActionTypes from './cart.actionTypes';
-import { StoreActions } from '../store.actions';
 import CartItem from './types/CartItem';
 import CollectionItem from './types/CollectionItem';
+import CartActions from './types/cart.actions';
 
 const initialState: CartItem[] = [];
 
@@ -54,9 +54,9 @@ const removeCartItem = (state: typeof initialState, id: number) => {
 	return deleteCartItem(state, id);
 };
 
-export const cartReducer = (
+const cartReducer = (
 	state = initialState,
-	action: StoreActions
+	action: CartActions
 ): typeof initialState => {
 	switch (action.type) {
 		case CartActionTypes.addCartItem:
@@ -72,3 +72,5 @@ export const cartReducer = (
 			return state;
 	}
 };
+
+export default cartReducer;
