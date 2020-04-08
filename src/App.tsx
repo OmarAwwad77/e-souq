@@ -7,6 +7,7 @@ import Shop from './pages/shop/shop.page';
 import Cart from './pages/cart/cart.page';
 import Checkout from './pages/checkout/checkout.page';
 import Sign from './pages/sign/sign.page';
+import SignOut from './components/sign/sign-out/sign-out';
 
 function App() {
 	return (
@@ -16,6 +17,7 @@ function App() {
 				<Route path='/checkout' component={Checkout} />
 				<Route path='/shop' component={Shop} />
 				<Route path='/sign' component={Sign} />
+				<Route path='/sign-out' component={SignOut} />
 				<Route path='/' component={Main} />
 			</Switch>
 		</Layout>

@@ -1,19 +1,23 @@
-import CartActionTypes from './cart.actionTypes';
-import CartActions from './types/cart.actions';
-import CollectionItem from './types/CollectionItem';
-import CartItem from './types/CartItem';
+import {
+	ADD_CART_ITEM,
+	REMOVE_CART_ITEM,
+	DELETE_CART_ITEM,
+} from './cart.types';
+import { CartActions } from './cart.types';
+import { CartItem } from './cart.types';
+import { CollectionItem } from './cart.types';
 
 export const addCartItem = (item: CollectionItem | CartItem): CartActions => ({
-	type: CartActionTypes.addCartItem,
+	type: ADD_CART_ITEM,
 	item,
 });
 
 export const deleteCartItem = (id: number): CartActions => ({
-	type: CartActionTypes.deleteCartItem,
+	type: DELETE_CART_ITEM,
 	id,
 });
 
 export const removeCartItem = (id: number): CartActions => ({
-	type: CartActionTypes.removeCartItem,
+	type: REMOVE_CART_ITEM,
 	id,
 });

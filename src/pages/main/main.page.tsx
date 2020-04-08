@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
 import Slider from '../../components/slider/slider';
@@ -10,6 +10,10 @@ export const MainWrapper = styled.div`
 `;
 
 const MainPage = () => {
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
+
 	return (
 		<MainWrapper>
 			<Slider />

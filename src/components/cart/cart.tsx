@@ -4,7 +4,7 @@ import { createStructuredSelector } from 'reselect';
 
 import { selectCartItems } from '../../redux/cart/cart.selectors';
 import { AppState } from '../../redux/root.reducer';
-import CartItemType from '../../redux/cart/types/CartItem';
+import { CartItem as CartItemType } from '../../redux/cart/cart.types';
 import { CartWrapper, CartTitle } from './cart.styles';
 import CartItem from './cart-item/cart-item';
 

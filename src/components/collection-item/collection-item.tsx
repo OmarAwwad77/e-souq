@@ -8,8 +8,8 @@ import {
 	AddToCartButton,
 } from './collection-item.styles';
 
-import CollectionItemType from '../../redux/cart/types/CollectionItem';
-import { addCartItem, StoreActions } from '../../redux/store.actions';
+import { CollectionItem as CollectionItemType } from '../../redux/cart/cart.types';
+import { addCartItem, StoreActions } from '../../redux/root.actions';
 import { Dispatch } from 'redux';
 
 type OwnProps = {

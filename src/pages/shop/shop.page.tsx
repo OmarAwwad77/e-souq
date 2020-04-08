@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { Route, Switch, RouteComponentProps } from 'react-router-dom';
 
@@ -13,6 +13,9 @@ const ShopWrapper = styled.section`
 
 const ShopPage = (props: RouteComponentProps) => {
 	const currentUrl = props.match.url;
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
 	return (
 		<ShopWrapper>
 			<Switch>

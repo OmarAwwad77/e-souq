@@ -1,5 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { createStructuredSelector } from 'reselect';
+import { connect } from 'react-redux';
 
+import { selectUser } from '../../redux/user/user.selectors';
 import CartIcon from '../cart-icon/cart-icon';
 import {
 	HeaderWrapper,
@@ -10,8 +13,18 @@ import {
 	NavLink,
 	Link,
 } from './header.styles';
+import { AppState } from '../../redux/root.reducer';
+import { User } from '../../redux/user/user.types';
 
-const Header = () => {
+interface OwnProps {}
+interface LinkDispatchProps {}
+interface LinkStateProps {
+	user: User | null;
+}
+
+type Props = OwnProps & LinkDispatchProps & LinkStateProps;
+
+const Header: React.FC<Props> = ({ user }) => {
 	const [isSticky, setSticky] = useState<boolean>(false);
 
 	const handleScrolling = useCallback(() => {
@@ -49,7 +62,9 @@ const Header = () => {
 				</NavLinkContainer>
 
 				<NavLinkContainer>
-					<NavLink to='/sign'>Sign In</NavLink>
+					<NavLink to={user ? '/sign-out' : '/sign'}>
+						{user ? 'Sign Out' : 'Sign In'}
+					</NavLink>
 				</NavLinkContainer>
 
 				<Link to='/cart'>
@@ -60,4 +75,12 @@ const Header = () => {
 	);
 };
 
-export default Header;
+const mapStateToProps = createStructuredSelector<
+	AppState,
+	OwnProps,
+	LinkStateProps
+>({
+	user: selectUser,
+});
+
+export default connect(mapStateToProps)(Header);

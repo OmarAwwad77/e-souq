@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Collection from '../collection/collection';
-import CollectionItemType from '../../redux/cart/types/CollectionItem';
+import { CollectionItem as CollectionItemType } from '../../redux/cart/cart.types';
 import { CollectionTitle, Link } from './shop-category.styles';
 
 interface OwnProps {

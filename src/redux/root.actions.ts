@@ -1,5 +1,5 @@
-import CartActions from './cart/types/cart.actions';
-import UserActions from './user/types/user.actions';
+import { CartActions } from './cart/cart.types';
+import { UserActions } from './user/user.types';
 export {
 	addCartItem,
 	removeCartItem,
@@ -9,6 +9,8 @@ export {
 	googleSignIn,
 	signInSuccess,
 	signInFailure,
+	signOut,
+	signOutSuccess,
 } from './user/user.actions';
 
 export type StoreActions = CartActions | UserActions;

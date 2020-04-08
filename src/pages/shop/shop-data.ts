@@ -22,7 +22,7 @@ import floralShirt from '../../assets/shop/floral-shirt.png';
 import longSleeveUrl from '../../assets/shop/long-sleeve.png';
 import pinkShirt from '../../assets/shop/pink-shirt.png';
 
-import CollectionItemType from '../../components/../redux/cart/types/CollectionItem';
+import { CollectionItem as CollectionItemType } from '../../components/../redux/cart/cart.types';
 
 interface DataType {
 	[key: string]: CollectionItemType[];

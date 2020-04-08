@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { css } from 'styled-components';
 
 import { countries } from './countries';
@@ -127,6 +127,10 @@ const formInitialState: FormStateType = {
 
 const CheckoutPage = () => {
 	const [formState, setFormState] = useState<FormStateType>(formInitialState);
+
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
 
 	return (
 		<PageWrapper>

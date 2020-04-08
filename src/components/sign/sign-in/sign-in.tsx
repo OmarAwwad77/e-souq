@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
 import { css } from 'styled-components';
+import { Dispatch } from 'redux';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import { createStructuredSelector } from 'reselect';
+import { AppState } from '../../../redux/root.reducer';
 
 import { ReactComponent as GoogleIcon } from '../../../assets/google.svg';
 import Form from '../../form/form';
 import { FormStateType } from '../../form/form.types';
 import { Button, ButtonsWrapper, OuterWrapper } from '../sign.styles';
-import { googleProvider, auth } from '../../../firebase/firebase.utils';
+import { StoreActions, googleSignIn } from '../../../redux/root.actions';
+import { selectUser } from '../../../redux/user/user.selectors';
+import { User } from '../../../redux/user/user.types';
 
 const signInGridCss = css`
 	width: 100%;
@@ -49,18 +56,26 @@ const signInFormInitialState: FormStateType = {
 	isFormValid: false,
 };
 
-const SignIn: React.FC = () => {
+interface OwnProps {}
+
+interface LinkStateProps {
+	user: User | null;
+}
+
+interface LinkDispatchProps {
+	googleSignIn: typeof googleSignIn;
+}
+
+type Props = LinkDispatchProps & LinkStateProps & OwnProps;
+
+const SignIn: React.FC<Props> = ({ googleSignIn, user }) => {
 	const [signInState, setSignInState] = useState<FormStateType>(
 		signInFormInitialState
 	);
 
-	const googleSignIn = async () => {
-		const { user } = await auth.signInWithPopup(googleProvider);
-		console.log(user);
-	};
-
 	return (
 		<OuterWrapper>
+			{user && <Redirect to='/' />}
 			<Form
 				state={signInState}
 				gridCss={signInGridCss}
@@ -76,4 +91,16 @@ const SignIn: React.FC = () => {
 	);
 };
 
-export default SignIn;
+const mapDispatchToProps = (dispatch: Dispatch<StoreActions>) => ({
+	googleSignIn: () => dispatch(googleSignIn()),
+});
+
+const mapStateToProps = createStructuredSelector<
+	AppState,
+	OwnProps,
+	LinkStateProps
+>({
+	user: selectUser,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

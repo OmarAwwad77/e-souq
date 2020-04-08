@@ -1,7 +1,11 @@
-import CartActionTypes from './cart.actionTypes';
-import CartItem from './types/CartItem';
-import CollectionItem from './types/CollectionItem';
-import CartActions from './types/cart.actions';
+import {
+	ADD_CART_ITEM,
+	REMOVE_CART_ITEM,
+	DELETE_CART_ITEM,
+} from './cart.types';
+import { CartItem } from './cart.types';
+import { CollectionItem } from './cart.types';
+import { CartActions } from './cart.types';
 
 const initialState: CartItem[] = [];
 
@@ -59,13 +63,13 @@ const cartReducer = (
 	action: CartActions
 ): typeof initialState => {
 	switch (action.type) {
-		case CartActionTypes.addCartItem:
+		case ADD_CART_ITEM:
 			return addCartItem(state, action.item);
 
-		case CartActionTypes.removeCartItem:
+		case REMOVE_CART_ITEM:
 			return removeCartItem(state, action.id);
 
-		case CartActionTypes.deleteCartItem:
+		case DELETE_CART_ITEM:
 			return deleteCartItem(state, action.id);
 
 		default:

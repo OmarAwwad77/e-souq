@@ -2,14 +2,14 @@ import React from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
-import { StoreActions } from '../../../redux/store.actions';
-import CartActions from '../../../redux/cart/types/cart.actions';
+import { StoreActions } from '../../../redux/root.actions';
+import { CartActions } from '../../../redux/cart/cart.types';
 import {
 	addCartItem,
 	removeCartItem,
 	deleteCartItem,
-} from '../../../redux/store.actions';
-import CartItemType from '../../../redux/cart/types/CartItem';
+} from '../../../redux/root.actions';
+import { CartItem as CartItemType } from '../../../redux/cart/cart.types';
 
 import {
 	CartItemProduct,

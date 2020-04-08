@@ -1,32 +1,39 @@
-import UserActions from './types/user.actions';
-import UserActionTypes from './user.actionTypes';
-import User from './types/User';
+import {
+	SIGN_IN_FAILURE,
+	SIGN_IN_SUCCESS,
+	SIGN_OUT_SUCCESS,
+} from './user.types';
+import { User } from './user.types';
+import { UserActions } from './user.types';
 
-type InitialState = {
+type UserState = {
 	user: null | User;
 	error: string | null;
 };
 
-const initialState: InitialState = {
+const initialState: UserState = {
 	user: null,
 	error: null,
 };
 
-const userReducer = (
-	state = initialState,
-	action: UserActions
-): InitialState => {
+const userReducer = (state = initialState, action: UserActions): UserState => {
 	switch (action.type) {
-		case UserActionTypes.SIGN_IN_SUCCESS:
+		case SIGN_IN_SUCCESS:
 			return {
 				...state,
 				user: action.user,
 			};
 
-		case UserActionTypes.SIGN_IN_FAILURE:
+		case SIGN_IN_FAILURE:
 			return {
 				...state,
 				error: action.error,
+			};
+
+		case SIGN_OUT_SUCCESS:
+			return {
+				user: null,
+				error: null,
 			};
 
 		default:
