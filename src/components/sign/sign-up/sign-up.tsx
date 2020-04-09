@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import { css } from 'styled-components';
 
 import { FormStateType } from '../../form/form.types';
 import Form from '../../form/form';
 import { Button, ButtonsWrapper, OuterWrapper } from '../sign.styles';
+import { Dispatch } from 'redux';
+import { StoreActions, signUp } from '../../../redux/root.actions';
+import { Credentials } from '../../../redux/user/user.types';
 
 const signUpGridCss = css`
 	width: 100%;
@@ -70,10 +74,32 @@ const signUpFormInitialState: FormStateType = {
 	isFormValid: false,
 };
 
-const SignUp: React.FC = () => {
+interface OwnProps {}
+interface LinkDispatchProps {
+	signUp: typeof signUp;
+}
+
+type Props = OwnProps & LinkDispatchProps;
+
+const SignUp: React.FC<Props> = ({ signUp }) => {
 	const [signUpState, setSignUpState] = useState<FormStateType>(
 		signUpFormInitialState
 	);
+
+	const signUpHandler = () => {
+		const {
+			fields: [displayNameObj, emailObj, passwordObj],
+			isFormValid,
+		} = signUpState;
+
+		if (isFormValid) {
+			const displayName = displayNameObj.value as string;
+			const email = emailObj.value as string;
+			const password = passwordObj.value as string;
+
+			signUp({ email, password, displayName });
+		}
+	};
 
 	return (
 		<OuterWrapper>
@@ -83,10 +109,16 @@ const SignUp: React.FC = () => {
 					state={signUpState}
 					gridCss={signUpGridCss}
 				/>
-				<Button>Sign up</Button>
+				<Button onClick={signUpHandler}>Sign up</Button>
 			</ButtonsWrapper>
 		</OuterWrapper>
 	);
 };
 
-export default SignUp;
+const mapDispatchToProps = (
+	dispatch: Dispatch<StoreActions>
+): LinkDispatchProps => ({
+	signUp: (credentials: Credentials) => dispatch(signUp(credentials)),
+});
+
+export default connect(null, mapDispatchToProps)(SignUp);

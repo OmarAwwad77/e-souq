@@ -6,7 +6,9 @@ export {
 	deleteCartItem,
 } from './cart/cart.actions';
 export {
+	signUp,
 	googleSignIn,
+	emailSignIn,
 	signInSuccess,
 	signInFailure,
 	signOut,

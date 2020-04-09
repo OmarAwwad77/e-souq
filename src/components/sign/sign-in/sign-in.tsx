@@ -10,9 +10,13 @@ import { ReactComponent as GoogleIcon } from '../../../assets/google.svg';
 import Form from '../../form/form';
 import { FormStateType } from '../../form/form.types';
 import { Button, ButtonsWrapper, OuterWrapper } from '../sign.styles';
-import { StoreActions, googleSignIn } from '../../../redux/root.actions';
+import {
+	StoreActions,
+	googleSignIn,
+	emailSignIn,
+} from '../../../redux/root.actions';
 import { selectUser } from '../../../redux/user/user.selectors';
-import { User } from '../../../redux/user/user.types';
+import { User, Credentials } from '../../../redux/user/user.types';
 
 const signInGridCss = css`
 	width: 100%;
@@ -64,14 +68,29 @@ interface LinkStateProps {
 
 interface LinkDispatchProps {
 	googleSignIn: typeof googleSignIn;
+	emailSignIn: typeof emailSignIn;
 }
 
 type Props = LinkDispatchProps & LinkStateProps & OwnProps;
 
-const SignIn: React.FC<Props> = ({ googleSignIn, user }) => {
+const SignIn: React.FC<Props> = ({ googleSignIn, emailSignIn, user }) => {
 	const [signInState, setSignInState] = useState<FormStateType>(
 		signInFormInitialState
 	);
+
+	const emailSignInHandler = () => {
+		const {
+			fields: [{ value: emailValue }, { value: passwordValue }],
+			isFormValid,
+		} = signInState;
+
+		if (isFormValid) {
+			emailSignIn({
+				email: emailValue as string,
+				password: passwordValue as string,
+			});
+		}
+	};
 
 	return (
 		<OuterWrapper>
@@ -82,7 +101,7 @@ const SignIn: React.FC<Props> = ({ googleSignIn, user }) => {
 				setState={setSignInState}
 			/>
 			<ButtonsWrapper>
-				<Button>Sign in</Button>
+				<Button onClick={emailSignInHandler}>Sign in</Button>
 				<Button onClick={googleSignIn}>
 					Sign in with &nbsp; <GoogleIcon />
 				</Button>
@@ -93,6 +112,7 @@ const SignIn: React.FC<Props> = ({ googleSignIn, user }) => {
 
 const mapDispatchToProps = (dispatch: Dispatch<StoreActions>) => ({
 	googleSignIn: () => dispatch(googleSignIn()),
+	emailSignIn: (credentials: Credentials) => dispatch(emailSignIn(credentials)),
 });
 
 const mapStateToProps = createStructuredSelector<
