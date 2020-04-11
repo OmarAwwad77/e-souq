@@ -1,4 +1,5 @@
 import {
+	LOADING,
 	SIGN_UP_START,
 	GOOGLE_SIGN_IN_START,
 	EMAIL_SIGN_IN_START,
@@ -9,11 +10,32 @@ import {
 	User,
 	Credentials,
 	UserActions,
+	UserError,
+	CLEAR_ERROR,
+	SIGN_UP_SUCCESS,
+	SIGN_UP_FAILURE,
 } from './user.types';
+
+export const loading = (): UserActions => ({
+	type: LOADING,
+});
+
+export const clearError = (): UserActions => ({
+	type: CLEAR_ERROR,
+});
 
 export const signUp = (credentials: Credentials): UserActions => ({
 	type: SIGN_UP_START,
 	credentials,
+});
+
+export const signUpSuccess = (): UserActions => ({
+	type: SIGN_UP_SUCCESS,
+});
+
+export const signUpFailure = (signUpError: UserError): UserActions => ({
+	type: SIGN_UP_FAILURE,
+	signUpError,
 });
 
 export const googleSignIn = (): UserActions => ({
@@ -30,9 +52,9 @@ export const signInSuccess = (user: User): UserActions => ({
 	user,
 });
 
-export const signInFailure = (error: string): UserActions => ({
+export const signInFailure = (signInError: UserError): UserActions => ({
 	type: SIGN_IN_FAILURE,
-	error,
+	signInError,
 });
 
 export const signOut = (): UserActions => ({

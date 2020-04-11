@@ -31,7 +31,7 @@ export const addUserToDatabase = async ({
 	email,
 	displayName,
 }: appUser) => {
-	return await db.collection('users').doc(uid).set({
+	await db.collection('users').doc(uid).set({
 		email,
 		displayName,
 	});

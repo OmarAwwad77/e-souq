@@ -7,3 +7,18 @@ export const selectUser = createSelector(
 	[selectUserState],
 	(userState) => userState.user
 );
+
+export const selectSignInError = createSelector(
+	[selectUserState],
+	(userState) => userState.signInError
+);
+
+export const selectSignUpError = createSelector(
+	[selectUserState],
+	(userState) => userState.signUpError
+);
+
+export const selectLoading = createSelector(
+	[selectUserState],
+	(userState) => userState.loading
+);

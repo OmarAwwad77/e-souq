@@ -9,7 +9,14 @@ import {
 	SignUp,
 	User,
 } from './user.types';
-import { signInSuccess, signOutSuccess } from '../root.actions';
+import {
+	loading,
+	signInSuccess,
+	signOutSuccess,
+	signInFailure,
+	signUpSuccess,
+	signUpFailure,
+} from '../root.actions';
 import {
 	googleSignIn,
 	FirebaseUser,
@@ -27,6 +34,7 @@ function* putUserOnSignSuccess(user: User): SagaIterator {
 function* signUp({
 	credentials: { email, password, displayName },
 }: SignUp): SagaIterator {
+	yield put(loading());
 	try {
 		const { user }: { user: FirebaseUser } = yield call(
 			[auth, auth.createUserWithEmailAndPassword],
@@ -37,9 +45,34 @@ function* signUp({
 		const appUser = { email, uid: user.uid, displayName: displayName! };
 
 		yield call(addUserToDatabase, appUser);
+		yield put(signUpSuccess());
 		yield call(putUserOnSignSuccess, appUser);
 	} catch (error) {
-		console.log(error);
+		switch (error.code) {
+			case 'auth/email-already-in-use':
+				yield put(
+					signUpFailure({
+						message: 'This Email is Taken. try another one',
+						label: 'email',
+					})
+				);
+				break;
+
+			case 'auth/weak-password':
+				yield put(
+					signUpFailure({ message: 'Weak Password', label: 'password' })
+				);
+				break;
+
+			case 'auth/invalid-email':
+				yield put(signUpFailure({ message: 'Invalid Email', label: 'email' }));
+				break;
+
+			default:
+				yield put(
+					signUpFailure({ message: 'Something Went Wrong', label: 'unknown' })
+				);
+		}
 	}
 }
 
@@ -50,12 +83,15 @@ function* signInWithGoogle(): SagaIterator {
 		}: { user: FirebaseUser } = yield call(googleSignIn);
 		const appUser: User = { email: email!, uid, displayName: displayName! };
 		yield call(putUserOnSignSuccess, appUser);
-	} catch (error) {}
+	} catch (error) {
+		console.log(error);
+	}
 }
 
 function* emailSignIn({
 	credentials: { email, password },
 }: EmailSignIn): SagaIterator {
+	yield put(loading());
 	try {
 		const { user }: { user: FirebaseUser } = yield call(
 			[auth, auth.signInWithEmailAndPassword],
@@ -69,7 +105,28 @@ function* emailSignIn({
 		};
 		yield call(putUserOnSignSuccess, appUser);
 	} catch (error) {
-		console.log(error);
+		switch (error.code) {
+			case 'auth/wrong-password':
+				yield put(
+					signInFailure({ message: 'Wrong password', label: 'password' })
+				);
+				break;
+
+			case 'auth/user-not-found':
+				yield put(
+					signInFailure({ message: "User Doesn't Exist", label: 'email' })
+				);
+				break;
+
+			case 'auth/invalid-email':
+				yield put(signInFailure({ message: 'Invalid Email', label: 'email' }));
+				break;
+
+			default:
+				yield put(
+					signInFailure({ message: 'Something Went Wrong', label: 'unknown' })
+				);
+		}
 	}
 }
 

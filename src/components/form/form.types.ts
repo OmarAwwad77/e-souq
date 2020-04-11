@@ -2,7 +2,7 @@ import { SetStateAction, Dispatch } from 'react';
 import {
 	FlattenInterpolation,
 	ThemeProps,
-	DefaultTheme
+	DefaultTheme,
 } from 'styled-components';
 
 export type GridCss = FlattenInterpolation<ThemeProps<DefaultTheme>>;
@@ -16,6 +16,11 @@ export type ValidationType = {
 	shouldMatch?: string;
 	type?: 'email' | 'phoneNo' | 'text' | 'number';
 };
+
+export interface FieldNetworkError {
+	label: string;
+	message: string;
+}
 
 export type FieldType = {
 	type: InputTypes;
@@ -38,4 +43,5 @@ export interface FormPropsType {
 	gridCss: GridCss;
 	state: FormStateType;
 	setState: Dispatch<SetStateAction<FormStateType>>;
+	fieldNetworkError?: FieldNetworkError | null;
 }

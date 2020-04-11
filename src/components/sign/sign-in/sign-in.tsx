@@ -14,9 +14,16 @@ import {
 	StoreActions,
 	googleSignIn,
 	emailSignIn,
+	clearError,
 } from '../../../redux/root.actions';
-import { selectUser } from '../../../redux/user/user.selectors';
-import { User, Credentials } from '../../../redux/user/user.types';
+import {
+	selectUser,
+	selectLoading,
+	selectSignInError,
+} from '../../../redux/user/user.selectors';
+import { User, Credentials, UserError } from '../../../redux/user/user.types';
+import withUnknownError from '../../with-error/with-unknown-error';
+import Spinner from '../../spinner/spinner';
 
 const signInGridCss = css`
 	width: 100%;
@@ -64,16 +71,25 @@ interface OwnProps {}
 
 interface LinkStateProps {
 	user: User | null;
+	error: UserError | null;
+	loading: boolean;
 }
 
 interface LinkDispatchProps {
 	googleSignIn: typeof googleSignIn;
 	emailSignIn: typeof emailSignIn;
+	clearError: typeof clearError; // for the HOC
 }
 
 type Props = LinkDispatchProps & LinkStateProps & OwnProps;
 
-const SignIn: React.FC<Props> = ({ googleSignIn, emailSignIn, user }) => {
+const SignIn: React.FC<Props> = ({
+	googleSignIn,
+	emailSignIn,
+	user,
+	error,
+	loading,
+}) => {
 	const [signInState, setSignInState] = useState<FormStateType>(
 		signInFormInitialState
 	);
@@ -83,7 +99,6 @@ const SignIn: React.FC<Props> = ({ googleSignIn, emailSignIn, user }) => {
 			fields: [{ value: emailValue }, { value: passwordValue }],
 			isFormValid,
 		} = signInState;
-
 		if (isFormValid) {
 			emailSignIn({
 				email: emailValue as string,
@@ -99,12 +114,21 @@ const SignIn: React.FC<Props> = ({ googleSignIn, emailSignIn, user }) => {
 				state={signInState}
 				gridCss={signInGridCss}
 				setState={setSignInState}
+				fieldNetworkError={error && error.label !== 'unknown' ? error : null}
 			/>
 			<ButtonsWrapper>
-				<Button onClick={emailSignInHandler}>Sign in</Button>
-				<Button onClick={googleSignIn}>
-					Sign in with &nbsp; <GoogleIcon />
-				</Button>
+				{loading ? (
+					<div style={{ width: '7rem', height: '7rem' }}>
+						<Spinner />
+					</div>
+				) : (
+					<>
+						<Button onClick={emailSignInHandler}>Sign in</Button>
+						<Button marginTop='1.2rem' onClick={googleSignIn}>
+							Sign in with &nbsp; <GoogleIcon />
+						</Button>
+					</>
+				)}
 			</ButtonsWrapper>
 		</OuterWrapper>
 	);
@@ -113,6 +137,7 @@ const SignIn: React.FC<Props> = ({ googleSignIn, emailSignIn, user }) => {
 const mapDispatchToProps = (dispatch: Dispatch<StoreActions>) => ({
 	googleSignIn: () => dispatch(googleSignIn()),
 	emailSignIn: (credentials: Credentials) => dispatch(emailSignIn(credentials)),
+	clearError: () => dispatch(clearError()),
 });
 
 const mapStateToProps = createStructuredSelector<
@@ -121,6 +146,11 @@ const mapStateToProps = createStructuredSelector<
 	LinkStateProps
 >({
 	user: selectUser,
+	error: selectSignInError,
+	loading: selectLoading,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(withUnknownError(SignIn));

@@ -6,6 +6,7 @@ export {
 	deleteCartItem,
 } from './cart/cart.actions';
 export {
+	loading,
 	signUp,
 	googleSignIn,
 	emailSignIn,
@@ -13,6 +14,9 @@ export {
 	signInFailure,
 	signOut,
 	signOutSuccess,
+	clearError,
+	signUpFailure,
+	signUpSuccess,
 } from './user/user.actions';
 
 export type StoreActions = CartActions | UserActions;

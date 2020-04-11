@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, useEffect } from 'react';
 
 import {
 	FormWrapper,
@@ -22,7 +22,34 @@ import {
 	InputTypes,
 } from './form.types';
 
-const From: React.FC<FormPropsType> = ({ gridCss, state, setState }) => {
+const From: React.FC<FormPropsType> = ({
+	gridCss,
+	state,
+	setState,
+	fieldNetworkError,
+}) => {
+	useEffect(() => {
+		if (fieldNetworkError) {
+			console.log('inside');
+			const { label, message } = fieldNetworkError;
+			const { fields } = state;
+			const updatedFields = fields.map((field) => {
+				if (field.label === label) {
+					return {
+						...field,
+						errorMessage: message,
+					};
+				} else {
+					return field;
+				}
+			});
+			setState({
+				...state,
+				fields: updatedFields,
+			});
+		}
+	}, [fieldNetworkError]);
+
 	const selectHandler = (selectedOption: { value: string; label: string }) => {
 		const fieldToUpdate = state.fields.find((f) => f.type === 'select');
 
@@ -97,6 +124,8 @@ const From: React.FC<FormPropsType> = ({ gridCss, state, setState }) => {
 		setState(newState);
 	};
 
+	console.log('form rerendering');
+
 	const getFormFieldByType = (type: InputTypes, field: FieldType) => {
 		if (type === 'text' || type === 'password') {
 			return (
@@ -147,7 +176,7 @@ const From: React.FC<FormPropsType> = ({ gridCss, state, setState }) => {
 	);
 };
 
-export default From;
+export default React.memo(From);
 
 const checkFormValidity = (fieldsUpdated: FieldType[]) => {
 	let isFormValid = true;

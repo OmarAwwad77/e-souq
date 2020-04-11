@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { Button as RawButton } from '../cart/cart-total/cart-total.styles';
 
@@ -10,6 +10,7 @@ export const OuterWrapper = styled.div`
 export const ButtonsWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
+	align-items: center;
 `;
 
 export const Button = styled(RawButton)`
@@ -21,7 +22,8 @@ export const Button = styled(RawButton)`
 	font-family: ${(p) => p.theme.fonts.Poppins};
 	font-size: 1.6rem;
 
-	&:last-child {
-		margin-top: 1rem;
-	}
+	${(p: { marginTop?: string }) =>
+		css`
+			margin-top: ${p.marginTop};
+		`};
 `;

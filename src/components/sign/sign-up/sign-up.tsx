@@ -1,13 +1,21 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { css } from 'styled-components';
+import { createStructuredSelector } from 'reselect';
 
 import { FormStateType } from '../../form/form.types';
 import Form from '../../form/form';
 import { Button, ButtonsWrapper, OuterWrapper } from '../sign.styles';
 import { Dispatch } from 'redux';
-import { StoreActions, signUp } from '../../../redux/root.actions';
-import { Credentials } from '../../../redux/user/user.types';
+import { StoreActions, signUp, clearError } from '../../../redux/root.actions';
+import { Credentials, UserError } from '../../../redux/user/user.types';
+import {
+	selectSignUpError,
+	selectLoading,
+} from '../../../redux/user/user.selectors';
+import { AppState } from '../../../redux/root.reducer';
+import Spinner from '../../spinner/spinner';
+import withUnknownError from '../../with-error/with-unknown-error';
 
 const signUpGridCss = css`
 	width: 100%;
@@ -77,11 +85,17 @@ const signUpFormInitialState: FormStateType = {
 interface OwnProps {}
 interface LinkDispatchProps {
 	signUp: typeof signUp;
+	clearError: typeof clearError;
 }
 
-type Props = OwnProps & LinkDispatchProps;
+interface LinkStateProps {
+	error: UserError | null;
+	loading: boolean;
+}
 
-const SignUp: React.FC<Props> = ({ signUp }) => {
+type Props = OwnProps & LinkDispatchProps & LinkStateProps;
+
+const SignUp: React.FC<Props> = ({ signUp, error, loading }) => {
 	const [signUpState, setSignUpState] = useState<FormStateType>(
 		signUpFormInitialState
 	);
@@ -103,22 +117,42 @@ const SignUp: React.FC<Props> = ({ signUp }) => {
 
 	return (
 		<OuterWrapper>
+			<Form
+				setState={setSignUpState}
+				state={signUpState}
+				gridCss={signUpGridCss}
+				fieldNetworkError={error && error.label !== 'unknown' ? error : null}
+			/>
 			<ButtonsWrapper>
-				<Form
-					setState={setSignUpState}
-					state={signUpState}
-					gridCss={signUpGridCss}
-				/>
-				<Button onClick={signUpHandler}>Sign up</Button>
+				{loading ? (
+					<div style={{ width: '7rem', height: '7rem' }}>
+						<Spinner />
+					</div>
+				) : (
+					<Button onClick={signUpHandler}>Sign up</Button>
+				)}
 			</ButtonsWrapper>
 		</OuterWrapper>
 	);
 };
 
+const mapStateToProps = createStructuredSelector<
+	AppState,
+	OwnProps,
+	LinkStateProps
+>({
+	error: selectSignUpError,
+	loading: selectLoading,
+});
+
 const mapDispatchToProps = (
 	dispatch: Dispatch<StoreActions>
 ): LinkDispatchProps => ({
 	signUp: (credentials: Credentials) => dispatch(signUp(credentials)),
+	clearError: () => dispatch(clearError()),
 });
 
-export default connect(null, mapDispatchToProps)(SignUp);
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(withUnknownError(SignUp));
