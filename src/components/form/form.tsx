@@ -124,8 +124,6 @@ const From: React.FC<FormPropsType> = ({
 		setState(newState);
 	};
 
-	console.log('form rerendering');
-
 	const getFormFieldByType = (type: InputTypes, field: FieldType) => {
 		if (type === 'text' || type === 'password') {
 			return (
@@ -218,7 +216,7 @@ const checkFieldValidity = (
 		if (!isValid && val) return 'Invalid Email';
 	}
 	if (validationObj.type === 'phoneNo') {
-		const pattern = /^\d+$/;
+		const pattern = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
 		const isValid = pattern.test(val);
 		if (!isValid && val) return 'Invalid Phone Number';
 	}

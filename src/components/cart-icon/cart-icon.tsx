@@ -8,11 +8,7 @@ import { selectCartItemsCount } from '../../redux/cart/cart.selectors';
 import { ReactComponent as CardIcon } from '../../assets/cart.svg';
 
 // styles
-type IconProps = {
-	width?: string;
-	height?: string;
-};
-const CartIconContainer = styled.li<IconProps>`
+const CartIconContainer = styled.div<OwnProps>`
 	position: relative;
 	width: ${(p) => (p.width ? p.width : '2.5rem')};
 	height: ${(p) => (p.height ? p.height : '2.5rem')};
@@ -29,17 +25,23 @@ const CartItemsNumber = styled.span`
 interface OwnProps {
 	width?: string;
 	height?: string;
+	withoutCount?: boolean;
 }
 interface StoreProps {
 	itemsCount: number;
 }
 type Props = StoreProps & OwnProps;
 
-const CartIcon: React.FC<Props> = ({ itemsCount, width, height }) => {
+const CartIcon: React.FC<Props> = ({
+	itemsCount,
+	width,
+	height,
+	withoutCount,
+}) => {
 	return (
 		<CartIconContainer width={width} height={height}>
 			<CardIcon />
-			<CartItemsNumber>{itemsCount}</CartItemsNumber>
+			<CartItemsNumber>{!withoutCount && itemsCount}</CartItemsNumber>
 		</CartIconContainer>
 	);
 };

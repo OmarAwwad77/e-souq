@@ -1,33 +1,34 @@
-import styled, { FlattenSimpleInterpolation } from 'styled-components';
+import styled, { FlattenSimpleInterpolation, css } from 'styled-components';
 
 export const CartTotalWrapper = styled.div`
-	width: 30rem;
+	width: 33rem;
 	min-height: 35rem;
 	margin-left: 1rem;
 	background-color: #f9f9f9;
 	padding: 2rem;
 	display: flex;
 	justify-content: space-evenly;
-	align-items: center;
+
 	flex-direction: column;
 	font-family: ${(p) => p.theme.fonts.Poppins};
 `;
 
 type TitleProps = {
 	gridArea?: FlattenSimpleInterpolation;
+	fontSize?: string;
 	// noMarginBottom?: boolean;
 };
 
 export const Title = styled.h2<TitleProps>`
 	align-self: start;
 	font-family: ${(p) => p.theme.fonts.zilla};
-	font-size: 2rem;
+	font-size: ${(p) => (p.fontSize ? p.fontSize : '2rem')};
 	margin: 0;
 	${(p) => p.gridArea};
 `;
 /* margin-bottom: ${p => (p.noMarginBottom ? '0' : '1.7rem')}; */
 interface LineWrapperPropsType {
-	light?: boolean;
+	bold?: boolean;
 }
 
 export const LineWrapper = styled.div`
@@ -35,7 +36,7 @@ export const LineWrapper = styled.div`
 	width: 100%;
 	justify-content: space-between;
 	font-size: 1.4rem;
-	font-weight: ${(p: LineWrapperPropsType) => (p.light ? '400' : '700')};
+	font-weight: ${(p: LineWrapperPropsType) => (p.bold ? '700' : '400')};
 	color: #1a1a1a;
 	text-transform: capitalize;
 
@@ -63,12 +64,19 @@ export const Button = styled.button`
 	margin-top: 2.5rem;
 	cursor: pointer;
 	backface-visibility: hidden;
-	box-shadow: 3px 5px 8px 0px #a9a9a9;
 	transition: all 0.3s ease;
 	text-transform: uppercase;
 
-	&:hover {
-		box-shadow: unset;
-		transform: scale(1.03);
-	}
+	${(p: { disabled?: boolean }) =>
+		p.disabled
+			? css`
+					opacity: 0.4;
+					cursor: not-allowed;
+			  `
+			: css`
+					&:hover {
+						box-shadow: 3px 5px 8px 0px #a9a9a9;
+						transform: scale(1.03);
+					}
+			  `}
 `;

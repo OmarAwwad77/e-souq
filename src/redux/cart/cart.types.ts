@@ -5,11 +5,7 @@ export interface CollectionItem {
 	url: string;
 }
 
-export interface CartItem {
-	id: number;
-	url: string;
-	name: string;
-	price: number;
+export interface CartItem extends CollectionItem {
 	quantity: number;
 	total: number;
 }

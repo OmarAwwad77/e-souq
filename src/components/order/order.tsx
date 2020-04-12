@@ -5,43 +5,55 @@ import {
 	Title,
 	Divider,
 	LineWrapper,
-	Button
+	Button,
 } from '../cart/cart-total/cart-total.styles';
+import { CartItem } from '../../redux/cart/cart.types';
+import OrderItem from './order-item/order-item';
+import StripeButton from '../stripe-button/stripe-button';
 
-const Order = () => {
+interface OwnProps {
+	cartItems: CartItem[];
+	cartTotal: number;
+	flatRate: number;
+	canOrder: boolean;
+}
+type Props = OwnProps;
+
+const Order: React.FC<Props> = ({
+	cartItems,
+	cartTotal,
+	flatRate,
+	canOrder,
+}) => {
 	return (
 		<OrderWrapper style={{ height: '55rem' }}>
 			<Title>Your Order</Title>
 			<Divider />
-			<LineWrapper light>
+			<LineWrapper>
 				<span>product</span>
 				<span>subtotal</span>
 			</LineWrapper>
 			<Divider />
-			<LineWrapper light>
-				<span>
-					Belt long jumpsuitfgfg <span style={{ fontWeight: 700 }}>× 1</span>
-				</span>
-				<span>$49.99</span>
-			</LineWrapper>
-			<Divider />
-			<LineWrapper light>
+			{cartItems.map(({ name, id, quantity, total }) => (
+				<OrderItem key={id} name={name} quantity={quantity} total={total} />
+			))}
+			<LineWrapper>
 				<span>subtotal</span>
-				<span>$129.98</span>
+				<span>${cartTotal}</span>
 			</LineWrapper>
 			<Divider />
-			<LineWrapper light>
+			<LineWrapper>
 				<span>shipping</span>
-				<span>flat rate: $29.98</span>
+				<span>flat rate: ${flatRate}</span>
 			</LineWrapper>
 			<Divider />
-			<LineWrapper light>
+			<LineWrapper>
 				<span>total</span>
-				<span style={{ fontWeight: 700 }}>$229.98</span>
+				<span style={{ fontWeight: 700 }}>${cartTotal + flatRate}</span>
 			</LineWrapper>
 			<Divider />
 			<Button>View Cart</Button>
-			<Button style={{ marginTop: '0' }}>Place Order</Button>
+			<StripeButton price={cartTotal + flatRate} canOrder={canOrder} />
 		</OrderWrapper>
 	);
 };
