@@ -4,6 +4,7 @@ import { ReactComponent as LeftArrowIcon } from '../../assets/left-arrow.svg';
 import { ReactComponent as RightArrowIcon } from '../../assets/right-arrow.svg';
 import img1 from '../../assets/slider1.jpg';
 import img2 from '../../assets/slider2.jpg';
+import mediaQueries from '../../media-queries';
 
 export type AnimType = 'in' | 'out' | 'none';
 
@@ -27,35 +28,40 @@ export const imagesText = [
 
 const scaleImageInAnim = keyframes`
 	0%{
-		transform: perspective(5px) translate3d(0px, 0px, 0px);
+		transform: perspective(3.5px) translate3d(0px, 0px, 0px);
 	}
 	100%{
-		transform: perspective(5px) translate3d(-35px, 2px, .5px);
+		transform: perspective(3.5px) translate3d(-15px, 2px, .4px);
 	}
 `;
 
 const scaleImageOutAnim = keyframes`
 	0%{
-		transform: perspective(5px) translate3d(-35px, 2px, .5px);
+		transform: perspective(3.5px) translate3d(-15px, 2px, .4px);
+	}
+	20%{
+		transform: perspective(3.5px) translate3d(-8px, 1px, .2px);
 	}
 	100%{
-		transform: perspective(5px) translate3d(0px, 0px, 0px);
+		transform: perspective(3.5px) translate3d(0px, 0px, 0px);
 	}
 `;
 const fadeOutImageAnim = keyframes`
-	from{
+	0%{
 		opacity: 1;
 	}
-	to{
+
+	100%{
 		opacity: 0;
 	}
 `;
 
 const fadeInImageAnim = keyframes`
-	from{
+	0%{
 		opacity: 0;
 	}
-	to{
+
+	100%{
 		opacity: 1;
 	}
 `;
@@ -121,20 +127,27 @@ export const Image = styled.div`
 	background-size: cover;
 	background-position-x: center;
 	background-repeat: no-repeat;
+	background-image: url(${(p: ImageProps) => p.image});
 	animation: ${(p: ImageProps) => {
 		if (p.fade === 'in') {
 			return css`
-					${scaleImageInAnim} 5s ease forwards ,${fadeInImageAnim} 2s  ease forwards
+					${scaleImageInAnim} 5s ease forwards ,${fadeInImageAnim} 1s  ease forwards
 				`;
 		} else if (p.fade === 'out') {
 			return css`
-				${scaleImageOutAnim} 5s ease forwards,${fadeOutImageAnim} 2s  ease forwards
+				${scaleImageOutAnim} 5s  -.5s ease forwards,${fadeOutImageAnim} 1s ease forwards
 			`;
 		} else {
 			return '';
 		}
 	}};
-	background-image: url(${(p: ImageProps) => p.image});
+
+	${mediaQueries.BREAK_POINT_820_PX(css`
+		background-position-x: 60%;
+	`)}
+	${mediaQueries.BREAK_POINT_400_PX(css`
+		background-position-x: 63%;
+	`)}
 `;
 
 export const SliderText = styled.div`
@@ -146,4 +159,14 @@ export const SliderText = styled.div`
 	position: absolute;
 	bottom: 35%;
 	left: 10%;
+	${mediaQueries.BREAK_POINT_820_PX(css`
+		font-size: 6.5rem;
+	`)};
+	${mediaQueries.BREAK_POINT_650_PX(css`
+		font-size: 5rem;
+	`)};
+	${mediaQueries.BREAK_POINT_400_PX(css`
+		bottom: 25%;
+		left: 13%;
+	`)}
 `;

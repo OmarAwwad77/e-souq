@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from '../header/header.styles';
+import { Link } from '../nav-items/nav-items.styles';
 import { Title, Button } from '../cart/cart-total/cart-total.styles';
 import CartIcon from '../cart-icon/cart-icon';
 

@@ -6,7 +6,7 @@ import {
 	BigTitle,
 	ShopButton,
 } from './shop-with-us.styles';
-import { Link } from '../header/header.styles';
+import { Link } from '../nav-items/nav-items.styles';
 
 const ShopWithUs = () => {
 	const wrapperRef = useRef<HTMLElement>(null);

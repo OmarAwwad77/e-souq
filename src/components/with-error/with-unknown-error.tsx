@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Backdrop = styled.div`
+export const Backdrop = styled.div`
 	width: 100vw;
 	height: 100vh;
 	position: fixed;
@@ -11,7 +11,7 @@ const Backdrop = styled.div`
 	background-color: rgba(0, 0, 0, 0.25);
 `;
 
-const Model = styled.div`
+export const Model = styled.div`
 	position: absolute;
 	z-index: 4;
 	${(p) => p.theme.mixins.centerElements}

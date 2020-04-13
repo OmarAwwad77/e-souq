@@ -5,7 +5,7 @@ import {
 	CategoryContainer,
 	Button,
 } from './categories-container.styles';
-import { Link } from '../header/header.styles';
+import { Link } from '../nav-items/nav-items.styles';
 
 import mensImageUrl from '../../assets/mens.jpg';
 import wonmensImageUrl from '../../assets/womens.jpg';

@@ -3,9 +3,6 @@ import styled, {
 	keyframes,
 	FlattenSimpleInterpolation,
 } from 'styled-components';
-import { NavLink as RawNavLink, Link as RawLink } from 'react-router-dom';
-
-import { ReactComponent as LogoIcon } from '../../assets/logo.svg';
 
 interface StyledHeaderProps {
 	sticky: boolean;
@@ -63,55 +60,4 @@ export const HeaderWrapper = styled.header`
 	${(p: StyledHeaderProps) => positionStyles(p.sticky)};
 	box-shadow: 0px 1px 13px
 		${(p: StyledHeaderProps) => (p.sticky ? 'lightgray' : 'transparent')};
-`;
-
-export const LogoContainer = styled.div`
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	font-family: 'Dancing Script', cursive;
-	font-weight: bold;
-	font-size: 2rem;
-	cursor: pointer;
-`;
-
-export const Logo = styled(LogoIcon)`
-	width: 6rem;
-	height: 6rem;
-	margin-right: 0.5rem;
-`;
-
-export const NavLinks = styled.ul`
-	width: 30.4rem;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	list-style: none;
-	margin: 0;
-	padding: 0;
-
-	.active:after {
-		left: 0%;
-		width: 100%;
-	}
-`;
-
-export const NavLinkContainer = styled.li`
-	text-transform: uppercase;
-	font-size: 1.6rem;
-	font-style: italic;
-`;
-
-const linkStyles = css`
-	text-decoration: none;
-	color: inherit;
-`;
-
-export const NavLink = styled(RawNavLink)`
-	${linkStyles}
-	${(p) => p.theme.mixins.hoverable};
-`;
-
-export const Link = styled(RawLink)`
-	${linkStyles}
 `;

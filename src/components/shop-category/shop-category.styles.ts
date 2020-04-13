@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export { Link } from '../header/header.styles';
+export { Link } from '../nav-items/nav-items.styles';
 
 export const CollectionTitle = styled.h1`
 	${(p) => p.theme.mixins.h1};

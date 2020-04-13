@@ -8,8 +8,8 @@ import {
 	LeftArrow,
 	RightArrow,
 	SliderWrapper,
-	imagesText
-} from './sliderStyles';
+	imagesText,
+} from './slider.styles';
 
 interface AnimState {
 	enter: number;
@@ -20,7 +20,7 @@ interface AnimState {
 const initialState = {
 	enter: 0,
 	leave: 0,
-	counter: 0
+	counter: 0,
 };
 
 const Slider = () => {
@@ -41,7 +41,7 @@ const Slider = () => {
 			setAnimState({
 				leave: oldCounter,
 				enter: newCounter,
-				counter: newCounter
+				counter: newCounter,
 			});
 		},
 		[animState.counter]
@@ -50,7 +50,7 @@ const Slider = () => {
 	useEffect(() => {
 		const intervalId = setInterval(() => {
 			changeImage('forward');
-		}, 6000);
+		}, 5000);
 
 		return () => {
 			clearInterval(intervalId);
