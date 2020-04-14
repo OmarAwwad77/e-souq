@@ -12,7 +12,7 @@ const AppLayout = styled.div`
 	grid-template-areas:
 		'content'
 		'footer';
-	overflow: hidden;
+	/* overflow: hidden; */
 `;
 
 interface LayoutProps {

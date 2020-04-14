@@ -216,7 +216,7 @@ const checkFieldValidity = (
 		if (!isValid && val) return 'Invalid Email';
 	}
 	if (validationObj.type === 'phoneNo') {
-		const pattern = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+		const pattern = /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/im;
 		const isValid = pattern.test(val);
 		if (!isValid && val) return 'Invalid Phone Number';
 	}

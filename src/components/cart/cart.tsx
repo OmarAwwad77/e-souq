@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
@@ -15,6 +15,10 @@ interface StoreProps {
 type Props = StoreProps;
 
 const Cart: React.FC<Props> = ({ cartItems }) => {
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
+
 	return (
 		<CartWrapper>
 			<CartTitle>product</CartTitle>

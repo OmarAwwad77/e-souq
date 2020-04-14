@@ -1,6 +1,7 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import cartImageUrl from '../../assets/cart-img-1.jpg';
+import MediaQueries from '../../media-queries';
 
 export const PageWrapper = styled.section`
 	margin: ${(p) => `${p.theme.spacer.M} 0`};
@@ -20,6 +21,18 @@ export const PageImage = styled.div`
 	background: url(${cartImageUrl}) 35% center/cover no-repeat;
 	width: 100%;
 	padding-top: 30.25%;
+
+	${MediaQueries.BREAK_POINT_820_PX(css`
+		padding-top: 40.25%;
+	`)}
+
+	${MediaQueries.BREAK_POINT_650_PX(css`
+		padding-top: 50.25%;
+	`)}
+
+	${MediaQueries.BREAK_POINT_400_PX(css`
+		padding-top: 65.25%;
+	`)}
 `;
 
 export const PageContent = styled.div`

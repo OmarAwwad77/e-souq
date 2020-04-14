@@ -2,10 +2,7 @@ import styled, { css } from 'styled-components';
 
 import { Button as RawButton } from '../cart/cart-total/cart-total.styles';
 
-export const OuterWrapper = styled.div`
-	width: 38rem;
-	margin: 0 auto;
-`;
+export const OuterWrapper = styled.div``;
 
 export const ButtonsWrapper = styled.div`
 	display: flex;

@@ -1,9 +1,10 @@
 import styled, { css } from 'styled-components';
 import SelectRaw from 'react-select';
+
 import { GridCss } from './form.types';
 import {
 	Title,
-	Divider as RawDivider
+	Divider as RawDivider,
 } from '../../components/cart/cart-total/cart-total.styles';
 
 export { Title };
@@ -29,12 +30,12 @@ export const dividerGridArea = css`
 `;
 
 export const FormWrapper = styled.form`
-	width: 60%;
+	width: 100%;
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	grid-template-rows: auto;
 	grid-auto-rows: auto;
-	font-family: ${p => p.theme.fonts.Poppins};
+	font-family: ${(p) => p.theme.fonts.Poppins};
 	font-size: 1.4rem;
 	${(p: { css: GridCss }) => p.css}
 `;
@@ -45,8 +46,8 @@ export const Label = styled.label`
 	text-transform: capitalize;
 `;
 
-export const Required = styled.abbr.attrs(p => ({
-	title: 'required'
+export const Required = styled.abbr.attrs((p) => ({
+	title: 'required',
 }))`
 	cursor: help;
 	margin-left: 0.6rem;

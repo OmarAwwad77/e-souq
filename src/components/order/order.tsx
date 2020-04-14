@@ -49,11 +49,16 @@ const Order: React.FC<Props> = ({
 			<Divider />
 			<LineWrapper>
 				<span>total</span>
-				<span style={{ fontWeight: 700 }}>${cartTotal + flatRate}</span>
+				<span style={{ fontWeight: 700 }}>
+					${(cartTotal + flatRate).toFixed(2)}
+				</span>
 			</LineWrapper>
 			<Divider />
 			<Button>View Cart</Button>
-			<StripeButton price={cartTotal + flatRate} canOrder={canOrder} />
+			<StripeButton
+				price={+(cartTotal + flatRate).toFixed(2)}
+				canOrder={canOrder}
+			/>
 		</OrderWrapper>
 	);
 };

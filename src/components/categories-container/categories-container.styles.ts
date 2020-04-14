@@ -1,11 +1,19 @@
 import styled, { css } from 'styled-components';
+import MediaQueries from '../../media-queries';
 
 export const CategoriesWrapper = styled.section`
-	margin: ${props => props.theme.spacer.S} auto;
+	margin: ${(props) => props.theme.spacer.S} auto;
 	display: grid;
-	grid-template-columns: repeat(2, minmax(38rem, 67.5rem));
+	grid-template-columns: repeat(2, minmax(39rem, 1fr));
 	grid-template-rows: repeat(2, auto);
 	width: 90%;
+	max-width: 110rem;
+
+	${MediaQueries.BREAK_POINT_885_PX(css`
+		width: 70%;
+		justify-content: center;
+		grid-template-columns: minmax(39rem, 1fr);
+	`)}
 `;
 
 const before_and_after_css = css`
@@ -19,12 +27,12 @@ const before_and_after_css = css`
 
 export const Button = styled.button`
 	position: absolute;
-	${p => p.theme.mixins.centerElements}
+	${(p) => p.theme.mixins.centerElements}
 	color: #fff;
 	text-transform: uppercase;
 	font-size: 2rem;
-	font-family: ${p => p.theme.fonts.zilla};
-	width: 30rem;
+	font-family: ${(p) => p.theme.fonts.zilla};
+	width: 29rem;
 	height: 5rem;
 	border: 3px solid #fff;
 	background-color: transparent;
@@ -34,7 +42,7 @@ export const Button = styled.button`
 	&:before {
 		content: '';
 		position: absolute;
-		${p => p.theme.mixins.centerElements}
+		${(p) => p.theme.mixins.centerElements}
 		width: 100%;
 		height: 100%;
 		background-color: transparent;
@@ -56,6 +64,9 @@ export const CategoryContainer = styled.div`
 		top: 75%;
 		left: 57%;
 	}
+	${MediaQueries.BREAK_POINT_885_PX(css`
+		margin-bottom: 2rem;
+	`)}
 `;
 
 export const Category = styled.div`

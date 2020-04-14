@@ -1,7 +1,8 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+import MediaQueries from '../../media-queries';
 
 export const CartWrapper = styled.div`
-	/* width: 60%; */
 	min-width: 60rem;
 	display: grid;
 	grid-template-columns: 33rem repeat(3, max-content);
@@ -13,6 +14,15 @@ export const CartWrapper = styled.div`
 	font-family: ${(p) => p.theme.fonts.Poppins};
 	font-size: 1.4rem;
 	color: #3e3e3e;
+	margin-bottom: ${(p) => p.theme.spacer.S};
+
+	${MediaQueries.BREAK_POINT_650_PX(css`
+		min-width: unset;
+		margin-left: auto;
+		margin-right: auto;
+		gap: 3.5rem 1rem;
+		grid-template-columns: repeat(4, max-content);
+	`)};
 `;
 
 export const CartTitle = styled.span`

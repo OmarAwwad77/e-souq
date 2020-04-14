@@ -29,12 +29,12 @@ const CartTotal: React.FC<Props> = ({ total }) => {
 			<LineWrapper bold>
 				<span>Shipping</span>
 				<span>
-					<span style={{ fontWeight: 400 }}>flat rate:</span> $20
+					<span style={{ fontWeight: 400 }}>flat rate:</span> $29.98
 				</span>
 			</LineWrapper>
 			<Divider />
 			<LineWrapper bold>
-				<span>total</span> <span>${total + 20}</span>
+				<span>total</span> <span>${(total + 20).toFixed(2)}</span>
 			</LineWrapper>
 			<Button>Proceed to checkout</Button>
 		</CartTotalWrapper>

@@ -1,9 +1,14 @@
 import styled, { css } from 'styled-components';
 
+import MediaQueries from '../../../media-queries';
+
 export const CartItemProduct = styled.div`
 	display: flex;
 	align-items: center;
+	position: relative;
 `;
+
+export const ProductImgName = styled.div``;
 
 export const Remove = styled.span`
 	position: relative;
@@ -11,6 +16,8 @@ export const Remove = styled.span`
 	width: 2rem;
 	height: 2rem;
 	margin-right: ${(p) => p.theme.spacer.XS};
+	cursor: pointer;
+
 	&::after,
 	&::before {
 		content: '';
@@ -29,18 +36,39 @@ export const Remove = styled.span`
 		transform: translate(0, -50%) rotate(-45deg);
 	}
 
-	cursor: pointer;
+	${MediaQueries.BREAK_POINT_650_PX(css`
+		margin-right: 1rem;
+	`)}
 `;
 
 export const Image = styled.img`
 	width: 7rem;
 	height: auto;
 	margin-right: ${(p) => p.theme.spacer.XS};
+
+	${MediaQueries.BREAK_POINT_650_PX(css`
+		margin-right: 1rem;
+	`)}
 `;
 
 export const Name = styled.span`
 	width: 20rem;
+
+	${MediaQueries.BREAK_POINT_650_PX(css`
+		width: 10rem;
+	`)}
+
+	${MediaQueries.BREAK_POINT_400_PX(css`
+		position: absolute;
+		left: 24%;
+		top: 105%;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	`)}
 `;
+
+export const Price = styled.span``;
 
 const plusMinusStyles = css`
 	position: absolute;
@@ -69,7 +97,7 @@ export const Quantity = styled.span`
 	text-align: center;
 `;
 
-export const Price = styled.span`
+export const SubTotal = styled.span`
 	font-weight: 700;
 	color: #1a1a1a;
 `;

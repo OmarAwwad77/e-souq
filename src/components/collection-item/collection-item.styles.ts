@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { cannotHover, canHover } from '../../media-queries';
 
 import { Button } from '../categories-container/categories-container.styles';
 
@@ -7,10 +8,20 @@ export const AddToCartButton = styled(Button)`
 	width: 70%;
 	top: 70%;
 
-	&:hover:before {
-		top: 75%;
-		left: 57%;
-	}
+	${canHover(css`
+		&:hover:before {
+			top: 75%;
+			left: 57%;
+		}
+	`)}
+
+	${cannotHover(css`
+		opacity: 1;
+		&:active:before {
+			top: 75%;
+			left: 57%;
+		}
+	`)}
 `;
 
 export const CollectionItemWrapper = styled.div`

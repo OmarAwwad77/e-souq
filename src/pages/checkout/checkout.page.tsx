@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { css } from 'styled-components';
 
 import { countries } from './countries';
 import { PageWrapper, PageContent } from '../cart/cart.page.styles';
-import { Header } from './checkout.page.styles';
+import {
+	Header,
+	billingFormStyles,
+	BillingFormWrapper,
+} from './checkout.page.styles';
 import Form from '../../components/form/form';
 import { FormStateType } from '../../components/form/form.types';
 import Order from '../../components/order/order';
@@ -17,30 +20,6 @@ import {
 import { AppState } from '../../redux/root.reducer';
 import { CartItem } from '../../redux/cart/cart.types';
 import ReturnToShop from '../../components/return-to-shop/return-to-shop';
-
-const billingFormStyles = css`
-	gap: 1rem;
-	/* grid-template-rows: 5rem; */
-	grid-template-areas:
-		'title title'
-		'divider divider'
-		'firstNameLabel lastNameLabel'
-		'firstName lastName'
-		'countryLabel countryLabel'
-		'country country'
-		'streetAddressLabel streetAddressLabel'
-		'streetAddress streetAddress'
-		'cityLabel cityLabel'
-		'city city'
-		'stateLabel stateLabel'
-		'state state'
-		'zipLabel zipLabel'
-		'zip zip'
-		'phoneLabel phoneLabel'
-		'phone phone'
-		'emailLabel emailLabel'
-		'email email';
-`;
 
 const formInitialState: FormStateType = {
 	titles: {
@@ -167,11 +146,13 @@ const CheckoutPage: React.FC<Props> = ({
 					<ReturnToShop />
 				) : (
 					<>
-						<Form
-							state={formState}
-							setState={setFormState}
-							gridCss={billingFormStyles}
-						/>
+						<BillingFormWrapper>
+							<Form
+								state={formState}
+								setState={setFormState}
+								gridCss={billingFormStyles}
+							/>
+						</BillingFormWrapper>
 						<Order
 							cartItems={cartItems}
 							cartTotal={cartTotal}

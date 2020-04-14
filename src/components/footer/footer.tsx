@@ -5,7 +5,7 @@ import {
 	FooterItem,
 	GitHubIconStyled,
 	GitHubAccount,
-	EmailIconStyled
+	EmailIconStyled,
 } from './footer.styles';
 
 const footer = () => {

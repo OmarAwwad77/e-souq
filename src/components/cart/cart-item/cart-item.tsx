@@ -13,10 +13,12 @@ import { CartItem as CartItemType } from '../../../redux/cart/cart.types';
 
 import {
 	CartItemProduct,
+	ProductImgName,
 	Remove,
 	Image,
-	Name,
 	Price,
+	Name,
+	SubTotal,
 	Quantity,
 	Plus,
 	Minus,
@@ -45,10 +47,12 @@ const CartItem: React.FC<Props> = ({
 						deleteCartItem(item.id);
 					}}
 				/>
+				{/* <ProductImgName> */}
 				<Image src={item.url} />
 				<Name>{item.name}</Name>
+				{/* </ProductImgName> */}
 			</CartItemProduct>
-			<span>${item.price}</span>
+			<Price>${item.price}</Price>
 			<Quantity>
 				<Plus
 					onClick={() => {
@@ -66,7 +70,7 @@ const CartItem: React.FC<Props> = ({
 					&#8722;
 				</Minus>
 			</Quantity>
-			<Price>${item.total}</Price>
+			<SubTotal>${item.total}</SubTotal>
 		</>
 	);
 };
