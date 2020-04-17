@@ -146,7 +146,7 @@ export const Image = styled.div`
 		background-position-x: 60%;
 	`)}
 	${mediaQueries.BREAK_POINT_400_PX(css`
-		background-position-x: 63%;
+		background-position-x: 68%;
 	`)}
 `;
 
