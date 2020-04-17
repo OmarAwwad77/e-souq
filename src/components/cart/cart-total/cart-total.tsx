@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from '../../nav-items/nav-items.styles';
 import { createStructuredSelector } from 'reselect';
 
 import { selectCartTotal } from '../../../redux/cart/cart.selectors';
@@ -36,7 +37,9 @@ const CartTotal: React.FC<Props> = ({ total }) => {
 			<LineWrapper bold>
 				<span>total</span> <span>${(total + 20).toFixed(2)}</span>
 			</LineWrapper>
-			<Button>Proceed to checkout</Button>
+			<Link to='/checkout'>
+				<Button>Proceed to checkout</Button>
+			</Link>
 		</CartTotalWrapper>
 	);
 };
