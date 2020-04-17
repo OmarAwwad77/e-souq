@@ -12,7 +12,7 @@ const AppLayout = styled.div`
 	grid-template-areas:
 		'content'
 		'footer';
-	/* overflow: hidden; */
+	overflow: hidden;
 `;
 
 interface LayoutProps {
@@ -26,11 +26,12 @@ const Layout: React.FC<LayoutProps> = (props) => {
 		<AppLayout>
 			<Header toggleSideBar={setShowSideBar} />
 			<SideBar
+				show={showSideBar}
 				closeSideBar={() => {
 					setShowSideBar(false);
 				}}
-				show={showSideBar}
 			/>
+
 			{props.children}
 			<Footer />
 		</AppLayout>

@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { animated } from 'react-spring';
+
 import {
 	images,
 	AnimType,
@@ -10,6 +12,7 @@ import {
 	SliderWrapper,
 	imagesText,
 } from './slider.styles';
+import { SliderTextAnimated } from './slider.springs';
 
 interface AnimState {
 	enter: number;
@@ -79,28 +82,15 @@ const Slider = () => {
 				<Image key={index} image={imgUrl} fade={checkAnimType(index)} />
 			))}
 
-			<SliderText>
+			<SliderTextAnimated>
 				{imagesText.map((text, i) => animState.counter === i && text)}
-			</SliderText>
+			</SliderTextAnimated>
+
+			{/* <SliderText>
+					{imagesText.map((text, i) => animState.counter === i && text)}
+				</SliderText> */}
 		</SliderWrapper>
 	);
 };
 
 export default Slider;
-
-/* Todo (26/3)
-	1- working arrows 				(done)
-	2- slider text anim             (done)
-	3- pointer navlinks and logo 	(done)
-	4- restructure files (styles)  	(done)
-	5- create gridLayout            (done)
-	6- footer 						(done)
-
-*/
-
-/* Todo (27/3)
-	1- Categories container			(done)
-	2- hover affects                (done)
-	3- shop with us container    	()
-	4- scroll effect            	()
-*/

@@ -2,10 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 
 import {
 	ShopWithUsWrapper,
-	SmallTitle,
-	BigTitle,
 	ShopButton,
+	BigTitle,
+	SmallTitle,
 } from './shop-with-us.styles';
+import { AnimatedOnReveal } from './shop-with-us.springs';
 import { Link } from '../nav-items/nav-items.styles';
 
 const ShopWithUs = () => {
@@ -29,17 +30,47 @@ const ShopWithUs = () => {
 			const divisionResult = scrollPosition / offSetTop.current!;
 			const result = divisionResult * 2 * 30;
 			setPositionY(result);
-			console.log(result);
 		}
 	};
 
 	return (
 		<ShopWithUsWrapper y={positionY} ref={wrapperRef}>
-			<SmallTitle>new Arrival</SmallTitle>
-			<BigTitle>new boho style</BigTitle>
-			<Link to='/shop'>
-				<ShopButton>Shop now</ShopButton>
-			</Link>
+			<AnimatedOnReveal
+				once
+				partialVisibility
+				useSpringProps={{
+					from: { transform: 'translateX(-50%)' },
+					to: { transform: 'translateX(0%)' },
+				}}
+				Component={SmallTitle}
+			>
+				new Arrival
+			</AnimatedOnReveal>
+
+			<AnimatedOnReveal
+				once
+				partialVisibility
+				useSpringProps={{
+					from: { transform: 'translateX(50%)' },
+					to: { transform: 'translateX(0%)' },
+				}}
+				Component={BigTitle}
+			>
+				new boho style
+			</AnimatedOnReveal>
+
+			<AnimatedOnReveal
+				once
+				partialVisibility
+				useSpringProps={{
+					from: { transform: 'translateY(10rem)' },
+					to: { transform: 'translateX(0)' },
+				}}
+			>
+				<Link to='/shop'>
+					<ShopButton>Shop now</ShopButton>
+				</Link>
+			</AnimatedOnReveal>
 		</ShopWithUsWrapper>
 	);
 };

@@ -27,6 +27,7 @@ export const NavLinksDesktop = styled.ul`
 
 export const NavLinksMobile = styled.ul`
 	${navLinksStyles}
+	overflow: hidden;
 	height: 100%;
 	width: 100%;
 	flex-direction: column;

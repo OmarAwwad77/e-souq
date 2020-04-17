@@ -27,7 +27,7 @@ const before_and_after_css = css`
 
 export const Button = styled.button`
 	position: absolute;
-	${(p) => p.theme.mixins.centerElements}
+	${(p) => p.theme.mixins.centerElements};
 	color: #fff;
 	text-transform: uppercase;
 	font-size: 2rem;
@@ -37,7 +37,9 @@ export const Button = styled.button`
 	border: 3px solid #fff;
 	background-color: transparent;
 	cursor: pointer;
-	transition: all 0.3s ease-out;
+	backface-visibility: hidden;
+	transform-origin: center;
+	/* opacity: 0; */
 
 	&:before {
 		content: '';

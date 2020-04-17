@@ -2,13 +2,11 @@ import React from 'react';
 
 import CartIcon from '../cart-icon/cart-icon';
 import { User } from '../../redux/user/user.types';
+import { NavLink, NavLinkContainer, Link } from './nav-items.styles';
 import {
-	NavLink,
-	NavLinkContainer,
-	Link,
-	NavLinksDesktop,
-	NavLinksMobile,
-} from './nav-items.styles';
+	NavLinksDesktopAnimated,
+	NavLinksMobileAnimated,
+} from './nav-items.springs';
 
 type OwnProps = {
 	user: User | null;
@@ -18,7 +16,7 @@ type OwnProps = {
 type Props = OwnProps;
 
 const NavItems: React.FC<Props> = ({ user, mobile }) => {
-	const NavLinks = mobile ? NavLinksMobile : NavLinksDesktop;
+	const NavLinks = mobile ? NavLinksMobileAnimated : NavLinksDesktopAnimated;
 	return (
 		<NavLinks>
 			<NavLinkContainer>

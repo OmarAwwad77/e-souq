@@ -3,9 +3,9 @@ import {
 	CategoriesWrapper,
 	Category,
 	CategoryContainer,
-	Button,
 } from './categories-container.styles';
 import { Link } from '../nav-items/nav-items.styles';
+import { ButtonAnimated } from './categories-container.springs';
 
 import mensImageUrl from '../../assets/mens.jpg';
 import wonmensImageUrl from '../../assets/womens.jpg';
@@ -18,25 +18,25 @@ const CategoriesContainer = () => {
 			<CategoryContainer>
 				<Category url={mensImageUrl} />
 				<Link to='/shop/mens'>
-					<Button>Mens</Button>
+					<ButtonAnimated>Mens</ButtonAnimated>
 				</Link>
 			</CategoryContainer>
 			<CategoryContainer>
 				<Category url={wonmensImageUrl} />
 				<Link to='/shop/womens'>
-					<Button>womens</Button>
+					<ButtonAnimated>womens</ButtonAnimated>
 				</Link>
 			</CategoryContainer>
 			<CategoryContainer>
 				<Category url={sneakersImageUrl} />
 				<Link to='/shop/sneakers'>
-					<Button>sneakers</Button>
+					<ButtonAnimated>sneakers</ButtonAnimated>
 				</Link>
 			</CategoryContainer>
 			<CategoryContainer>
 				<Category url={hatsImageUrl} />
 				<Link to='/shop/hats'>
-					<Button>hats</Button>
+					<ButtonAnimated>hats</ButtonAnimated>
 				</Link>
 			</CategoryContainer>
 		</CategoriesWrapper>
