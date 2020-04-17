@@ -143,11 +143,11 @@ export const Image = styled.div`
 	}};
 
 	${mediaQueries.BREAK_POINT_820_PX(css`
-		background-position-x: 60%;
+		background-position-x: 70%;
 	`)}
-	${mediaQueries.BREAK_POINT_400_PX(css`
-		background-position-x: 68%;
-	`)}
+	/* ${mediaQueries.BREAK_POINT_400_PX(css`
+		background-position-x: 71%;
+	`)} */
 `;
 
 export const SliderText = styled.div`

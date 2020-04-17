@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import MediaQueries from '../../media-queries';
+import MediaQueries, { cannotHover } from '../../media-queries';
 
 import imageUrl from '../../assets/shop-with-us.jpg';
 
@@ -71,12 +71,13 @@ export const ShopButton = styled.button`
 	width: 19rem;
 	height: 6rem;
 	background-color: #fff;
-	transition: all 0.3s ease-out;
+	transition: all 0.2s ease-out;
 	font-family: ${(p) => p.theme.fonts.zilla};
 	font-size: 1.6rem;
 	text-transform: uppercase;
 
-	&:hover {
+	&:hover,
+	&:active {
 		background-color: black;
 		color: #fff;
 	}
