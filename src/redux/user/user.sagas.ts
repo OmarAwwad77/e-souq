@@ -70,7 +70,10 @@ function* signUp({
 
 			default:
 				yield put(
-					signUpFailure({ message: 'Something Went Wrong', label: 'unknown' })
+					signUpFailure({
+						message: 'something went wrong. try again later',
+						label: 'unknown',
+					})
 				);
 		}
 	}
@@ -85,6 +88,12 @@ function* signInWithGoogle(): SagaIterator {
 		yield call(putUserOnSignSuccess, appUser);
 	} catch (error) {
 		console.log(error);
+		yield put(
+			signInFailure({
+				message: 'something went wrong. try again later',
+				label: 'unknown',
+			})
+		);
 	}
 }
 
@@ -124,7 +133,10 @@ function* emailSignIn({
 
 			default:
 				yield put(
-					signInFailure({ message: 'Something Went Wrong', label: 'unknown' })
+					signInFailure({
+						message: 'something went wrong. try again later',
+						label: 'unknown',
+					})
 				);
 		}
 	}
@@ -132,11 +144,10 @@ function* emailSignIn({
 
 function* signOut(): SagaIterator {
 	try {
-		console.log('hey there');
 		yield call([auth, auth.signOut]);
 		yield put(signOutSuccess());
 	} catch (error) {
-		console.log(error);
+		signInFailure({ message: 'Something Went Wrong', label: 'unknown' });
 	}
 }
 

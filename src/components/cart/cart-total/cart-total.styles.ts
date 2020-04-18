@@ -1,4 +1,5 @@
 import styled, { FlattenSimpleInterpolation, css } from 'styled-components';
+import MediaQueries from '../../../media-queries';
 
 export const CartTotalWrapper = styled.div`
 	width: 33rem;
@@ -8,9 +9,12 @@ export const CartTotalWrapper = styled.div`
 	padding: 2rem;
 	display: flex;
 	justify-content: space-evenly;
-
 	flex-direction: column;
 	font-family: ${(p) => p.theme.fonts.Poppins};
+
+	${MediaQueries.BREAK_POINT_885_PX(css`
+		margin-left: 0;
+	`)}
 `;
 
 type TitleProps = {

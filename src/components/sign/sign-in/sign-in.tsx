@@ -48,6 +48,7 @@ const signInFormInitialState: FormStateType = {
 			type: 'text',
 			label: 'email',
 			value: '',
+			isValid: false,
 			validation: {
 				required: true,
 				type: 'email',
@@ -57,6 +58,7 @@ const signInFormInitialState: FormStateType = {
 			type: 'password',
 			label: 'password',
 			value: '',
+			isValid: false,
 			validation: {
 				required: true,
 				minLen: 6,

@@ -30,7 +30,6 @@ const From: React.FC<FormPropsType> = ({
 }) => {
 	useEffect(() => {
 		if (fieldNetworkError) {
-			console.log('inside');
 			const { label, message } = fieldNetworkError;
 			const { fields } = state;
 			const updatedFields = fields.map((field) => {

@@ -51,6 +51,7 @@ const formInitialState: FormStateType = {
 		{
 			type: 'select',
 			label: 'country',
+			isValid: true,
 			options: countries,
 			value: countries[0],
 			validation: {
@@ -109,6 +110,7 @@ const formInitialState: FormStateType = {
 		{
 			type: 'text',
 			label: 'email',
+			isValid: true,
 			value: '',
 			validation: {
 				type: 'email',

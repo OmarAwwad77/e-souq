@@ -7,6 +7,7 @@ import {
 	LineWrapper,
 	Button,
 } from '../cart/cart-total/cart-total.styles';
+import { Link } from '../nav-items/nav-items.styles';
 import { CartItem } from '../../redux/cart/cart.types';
 import OrderItem from './order-item/order-item';
 import StripeButton from '../stripe-button/stripe-button';
@@ -54,7 +55,9 @@ const Order: React.FC<Props> = ({
 				</span>
 			</LineWrapper>
 			<Divider />
-			<Button>View Cart</Button>
+			<Link to='/cart'>
+				<Button>View Cart</Button>
+			</Link>
 			<StripeButton
 				price={+(cartTotal + flatRate).toFixed(2)}
 				canOrder={canOrder}

@@ -44,6 +44,7 @@ const signUpFormInitialState: FormStateType = {
 			type: 'text',
 			label: 'displayName',
 			displayLabel: 'display name',
+			isValid: false,
 			value: '',
 			validation: {
 				required: true,
@@ -53,6 +54,7 @@ const signUpFormInitialState: FormStateType = {
 			type: 'text',
 			label: 'email',
 			value: '',
+			isValid: false,
 			validation: {
 				required: true,
 				type: 'email',
@@ -62,6 +64,7 @@ const signUpFormInitialState: FormStateType = {
 			type: 'password',
 			label: 'password',
 			value: '',
+			isValid: false,
 			validation: {
 				required: true,
 				minLen: 6,
@@ -73,6 +76,7 @@ const signUpFormInitialState: FormStateType = {
 			label: 'confirmPassword',
 			displayLabel: 'confirm password',
 			value: '',
+			isValid: false,
 			validation: {
 				required: true,
 				shouldMatch: 'password',

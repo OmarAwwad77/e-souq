@@ -16,7 +16,6 @@ const StripeCheckoutButton: React.FC<Props> = ({ price, canOrder }) => {
 
 	const onToken = (token: Token) => {
 		alert('Payment Succesful!');
-		console.log(token);
 	};
 
 	return (

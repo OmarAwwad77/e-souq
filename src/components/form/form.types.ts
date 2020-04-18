@@ -28,7 +28,7 @@ export type FieldType = {
 	displayLabel?: string;
 	value: string | { value: string; label: string };
 	options?: { value: string; label: string }[];
-	isValid?: boolean;
+	isValid: boolean;
 	errorMessage?: null | string;
 	validation?: ValidationType;
 };

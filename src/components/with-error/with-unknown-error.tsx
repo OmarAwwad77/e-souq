@@ -15,7 +15,8 @@ export const Model = styled.div`
 	position: absolute;
 	z-index: 4;
 	${(p) => p.theme.mixins.centerElements}
-	width: 45rem;
+	max-width: 45rem;
+	min-width: 31rem;
 	height: 32rem;
 	background-color: #fff;
 	border-radius: 1rem;
@@ -36,6 +37,9 @@ const ErrorMessage = styled.p`
 	font-size: 2.5rem;
 	text-align: center;
 	margin-top: 8rem;
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
 	font-family: ${(p) => p.theme.fonts.zilla};
 `;
 
@@ -48,7 +52,7 @@ const withUnknownError = (Component: React.FC<any>) => {
 					<Backdrop onClick={clearError}>
 						<Model>
 							<ErrorTitle>NetWork Error</ErrorTitle>
-							<ErrorMessage>something went wrong</ErrorMessage>
+							<ErrorMessage>{error.message}</ErrorMessage>
 						</Model>
 					</Backdrop>
 					<Component {...theRest} />
