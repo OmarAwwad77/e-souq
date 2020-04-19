@@ -7,6 +7,7 @@ export {
 } from './cart/cart.actions';
 export {
 	loading,
+	getCurrentUser,
 	signUp,
 	googleSignIn,
 	emailSignIn,

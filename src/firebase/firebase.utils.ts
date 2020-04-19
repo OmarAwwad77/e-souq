@@ -37,4 +37,19 @@ export const addUserToDatabase = async ({
 	});
 };
 
+export const getCurrentUser = () => {
+	return new Promise<(User | null) | Error>((resolve, reject) => {
+		const unsubscribe = auth.onAuthStateChanged(
+			(user) => {
+				unsubscribe();
+				resolve(user);
+			},
+			(error) => {
+				unsubscribe();
+				reject(error);
+			}
+		);
+	});
+};
+
 export default firebase;

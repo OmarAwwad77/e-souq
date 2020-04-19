@@ -14,10 +14,15 @@ import {
 	CLEAR_ERROR,
 	SIGN_UP_SUCCESS,
 	SIGN_UP_FAILURE,
+	GET_CURRENT_USER,
 } from './user.types';
 
 export const loading = (): UserActions => ({
 	type: LOADING,
+});
+
+export const getCurrentUser = (): UserActions => ({
+	type: GET_CURRENT_USER,
 });
 
 export const clearError = (): UserActions => ({

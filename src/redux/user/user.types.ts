@@ -16,6 +16,7 @@ export interface UserError {
 }
 
 export const LOADING = 'LOADING';
+export const GET_CURRENT_USER = 'GET_CURRENT_USER';
 export const CLEAR_ERROR = 'CLEAR_ERROR';
 export const SIGN_UP_START = 'SIGN_UP_START';
 export const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS';
@@ -28,11 +29,15 @@ export const SIGN_OUT_START = 'SIGN_OUT_START';
 export const SIGN_OUT_SUCCESS = 'SIGN_OUT_SUCCESS';
 export const SIGN_OUT_FAILURE = 'SIGN_OUT_FAILURE';
 
-export interface loading {
+export interface Loading {
 	type: typeof LOADING;
 }
 
-export interface clearError {
+export interface GetCurrentUser {
+	type: typeof GET_CURRENT_USER;
+}
+
+export interface ClearError {
 	type: typeof CLEAR_ERROR;
 }
 
@@ -87,5 +92,6 @@ export type UserActions =
 	| SignUp
 	| SignUpSuccess
 	| SignUpFailure
-	| loading
-	| clearError;
+	| Loading
+	| ClearError
+	| GetCurrentUser;

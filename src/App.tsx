@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { Dispatch } from 'redux';
+import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 
 import Layout from './components/layout/layout';
@@ -8,8 +10,20 @@ import Cart from './pages/cart/cart.page';
 import Checkout from './pages/checkout/checkout.page';
 import Sign from './pages/sign/sign.page';
 import SignOut from './components/sign/sign-out/sign-out';
+import { StoreActions, getCurrentUser } from './redux/root.actions';
 
-function App() {
+interface LinkDispatchProps {
+	getCurrentUser: typeof getCurrentUser;
+}
+interface OwnProps {}
+
+type Props = OwnProps & LinkDispatchProps;
+
+const App: React.FC<Props> = ({ getCurrentUser }) => {
+	useEffect(() => {
+		getCurrentUser();
+	}, []);
+
 	return (
 		<Layout>
 			<Switch>
@@ -22,6 +36,12 @@ function App() {
 			</Switch>
 		</Layout>
 	);
-}
+};
 
-export default App;
+const mapDispatchToProps = (
+	dispatch: Dispatch<StoreActions>
+): LinkDispatchProps => ({
+	getCurrentUser: () => dispatch(getCurrentUser()),
+});
+
+export default connect(null, mapDispatchToProps)(App);
