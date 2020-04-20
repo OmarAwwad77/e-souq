@@ -10,18 +10,24 @@ import Cart from './pages/cart/cart.page';
 import Checkout from './pages/checkout/checkout.page';
 import Sign from './pages/sign/sign.page';
 import SignOut from './components/sign/sign-out/sign-out';
-import { StoreActions, getCurrentUser } from './redux/root.actions';
+import {
+	StoreActions,
+	getCurrentUser,
+	getStorageCartItems,
+} from './redux/root.actions';
 
 interface LinkDispatchProps {
 	getCurrentUser: typeof getCurrentUser;
+	getStorageCartItems: typeof getStorageCartItems;
 }
 interface OwnProps {}
 
 type Props = OwnProps & LinkDispatchProps;
 
-const App: React.FC<Props> = ({ getCurrentUser }) => {
+const App: React.FC<Props> = ({ getCurrentUser, getStorageCartItems }) => {
 	useEffect(() => {
 		getCurrentUser();
+		getStorageCartItems();
 	}, []);
 
 	return (
@@ -42,6 +48,7 @@ const mapDispatchToProps = (
 	dispatch: Dispatch<StoreActions>
 ): LinkDispatchProps => ({
 	getCurrentUser: () => dispatch(getCurrentUser()),
+	getStorageCartItems: () => dispatch(getStorageCartItems()),
 });
 
 export default connect(null, mapDispatchToProps)(App);

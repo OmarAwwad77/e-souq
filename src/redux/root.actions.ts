@@ -1,6 +1,7 @@
 import { CartActions } from './cart/cart.types';
 import { UserActions } from './user/user.types';
 export {
+	getStorageCartItems,
 	addCartItem,
 	removeCartItem,
 	deleteCartItem,
