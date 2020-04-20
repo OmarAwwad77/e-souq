@@ -67,41 +67,51 @@ export const updateCartItemsInStorageUtil = (
 		| null = localStorage.getItem('cart');
 	let updatedStorageCartItems: typeof initialState;
 
-	if (cartItemsFromStorage) {
-		// we already have items
-		cartItemsFromStorage = JSON.parse(
-			cartItemsFromStorage
-		) as typeof initialState;
+	switch (action) {
+		case 'add':
+			if (cartItemsFromStorage) {
+				cartItemsFromStorage = JSON.parse(
+					cartItemsFromStorage
+				) as typeof initialState;
+			} else {
+				cartItemsFromStorage = [];
+			}
+			updatedStorageCartItems = addCartItemUtil(
+				cartItemsFromStorage,
+				payload as CartItem | CollectionItem
+			);
+			break;
 
-		switch (action) {
-			case 'add':
-				updatedStorageCartItems = addCartItemUtil(
-					cartItemsFromStorage,
-					payload as CartItem | CollectionItem
-				);
-				break;
+		case 'remove':
+			if (cartItemsFromStorage) {
+				cartItemsFromStorage = JSON.parse(
+					cartItemsFromStorage
+				) as typeof initialState;
+			} else {
+				cartItemsFromStorage = [];
+			}
+			updatedStorageCartItems = removeCartItemUtil(
+				cartItemsFromStorage,
+				payload as number
+			);
+			break;
 
-			case 'remove':
-				updatedStorageCartItems = removeCartItemUtil(
-					cartItemsFromStorage,
-					payload as number
-				);
-				break;
-
-			case 'delete':
-				updatedStorageCartItems = deleteCartItemUtil(
-					cartItemsFromStorage,
-					payload as number
-				);
-				break;
-		}
-
-		localStorage.setItem('cart', JSON.stringify(updatedStorageCartItems));
-	} else {
-		// no items exist
-		const updatedStorageCartItems: CartItem[] = [];
-		localStorage.setItem('cart', JSON.stringify(updatedStorageCartItems));
+		case 'delete':
+			if (cartItemsFromStorage) {
+				cartItemsFromStorage = JSON.parse(
+					cartItemsFromStorage
+				) as typeof initialState;
+			} else {
+				cartItemsFromStorage = [];
+			}
+			updatedStorageCartItems = deleteCartItemUtil(
+				cartItemsFromStorage,
+				payload as number
+			);
+			break;
 	}
+
+	localStorage.setItem('cart', JSON.stringify(updatedStorageCartItems));
 };
 
 export const getStorageCartItemsUtil = () => {
